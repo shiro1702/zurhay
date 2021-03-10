@@ -1,0 +1,30 @@
+{
+  "name": "my-app",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.21.0",
+    "nuxt": "^2.15.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.3",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.2.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "fibers": "^5.0.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1"
+  }
+}
