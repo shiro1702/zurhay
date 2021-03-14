@@ -2,8 +2,24 @@
   {
     "name": "index",
     "path": "/",
-    "component": "/Users/arsalan/Desktop/progects/zurhay/pages/index.vue",
+    "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_47905de9"
+    "children": [
+      {
+        "name": "index-yyyymm",
+        "path": ":yyyymm",
+        "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index/_yyyymm/index.vue",
+        "chunkName": "pages/index/_yyyymm/index",
+        "_name": "_32b47246"
+      },
+      {
+        "name": "index-yyyymm-dd",
+        "path": ":yyyymm?/:dd",
+        "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index/_yyyymm/_dd/index.vue",
+        "chunkName": "pages/index/_yyyymm/_dd/index",
+        "_name": "_4eddf06d"
+      }
+    ],
+    "_name": "_3965302c"
   }
 ]

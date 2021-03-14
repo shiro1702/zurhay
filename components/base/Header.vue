@@ -13,10 +13,12 @@
 
         <v-btn
           v-for="link in links"
-          :key="link"
+          :key="link.name"
           text
+          nuxt
+          :to="{name: link.name}"
         >
-          {{ link }}
+          {{ link.title }}
         </v-btn>
 
         <v-spacer></v-spacer>
@@ -37,10 +39,14 @@
 export default {
   data: () => ({
     links: [
-      'Dashboard',
-      'Messages',
-      'Profile',
-      'Updates',
+      {
+        title: 'Home',
+        name: 'index'
+      }
+      
+      // 'Messages',
+      // 'Profile',
+      // 'Updates',
     ],
   }),
 }
