@@ -8,7 +8,7 @@
 <script>
 // import { VBtn, VChip } from 'vuetify/lib'
 
-import { getYYYYMM } from '@/assets/js/getYYYYMM.js'
+import { getYYYYMM } from '@/assets/js/getDate.js'
 
 export default {
   // components: { VBtn }

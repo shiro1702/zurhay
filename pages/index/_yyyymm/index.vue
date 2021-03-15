@@ -55,7 +55,7 @@
           :weekdays="[ 1, 2, 3, 4, 5, 6, 0]"
         >
         
-          <template v-slot:day="{ past, date }">
+          <template v-slot:day="{ date }">
             <v-container>
               <v-row v-if="tracked[date]"
               align="center"
@@ -148,8 +148,8 @@
 </template>
 
 <script>
-import {getMoonPhase} from '@/assets/js/moon.js'
-import { getYYYYMM } from '@/assets/js/getYYYYMM.js'
+import { getMoonPhase } from '@/assets/js/moon.js'
+import { getYYYYMM } from '@/assets/js/getDate.js'
 
 export default {
   // middleware: 'setMonth',
