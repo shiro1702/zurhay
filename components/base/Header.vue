@@ -17,6 +17,7 @@
           text
           nuxt
           :to="{name: link.name}"
+          class="mr-2"
         >
           {{ link.title }}
         </v-btn>
@@ -40,8 +41,12 @@ export default {
   data: () => ({
     links: [
       {
-        title: 'Home',
+        title: 'Главная',
         name: 'index'
+      },
+      {
+        title: 'О проекте',
+        name: 'about'
       }
       
       // 'Messages',

@@ -12,7 +12,7 @@
             nuxt
             :to="todayLink"
           >
-            Today
+            Сегодня
           </v-btn>
           <v-btn
             fab
