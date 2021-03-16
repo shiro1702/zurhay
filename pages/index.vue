@@ -11,6 +11,11 @@
 import { getYYYYMM } from '@/assets/js/getDate.js'
 
 export default {
+  head(){
+    return {
+      title: `Зурхай ${this.title}`,
+    }
+  },
   // components: { VBtn }
   // async asyncData({ params, redirect }) {
   //   redirect('/2021-03')

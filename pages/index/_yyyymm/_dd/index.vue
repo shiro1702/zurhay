@@ -43,6 +43,20 @@ import { getYYYYMMDD } from '@/assets/js/getDate.js'
 import { getMoonPhase } from '@/assets/js/moon.js'
 
 export default {
+  head(){
+    return {
+      link: [
+        {
+          rel: 'prev',
+          href: this.prevLink
+        },
+        {
+          rel: 'next',
+          href: this.nextLink
+        }
+      ]
+    }
+  },
   middleware({ params, redirect }) {
     // if (!params.yyyymm) {
     //   return redirect('/'+getYYYYMM())

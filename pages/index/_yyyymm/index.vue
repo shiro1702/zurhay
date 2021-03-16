@@ -38,9 +38,6 @@
               mdi-chevron-right
             </v-icon>
           </v-btn>
-          <!-- <v-toolbar-title v-if="$refs.calendar">
-            {{ $refs.calendar.title }}
-          </v-toolbar-title> -->
           <v-spacer></v-spacer>
         </v-toolbar>
       </v-sheet>
@@ -152,7 +149,20 @@ import { getMoonPhase } from '@/assets/js/moon.js'
 import { getYYYYMM } from '@/assets/js/getDate.js'
 
 export default {
-  // middleware: 'setMonth',
+  head(){
+    return {
+      link: [
+        {
+          rel: 'prev',
+          href: this.prevLink
+        },
+        {
+          rel: 'next',
+          href: this.nextLink
+        }
+      ]
+    }
+  },
   data: () => ({
     todayLink: '/'+getYYYYMM(),
     focus: '2021-03-14',
@@ -214,7 +224,7 @@ export default {
     console.log(`${this.$route.params.yyyymm}-1`);
   },
   mounted () {
-    // this.$refs.calendar.checkChange()
+    // this.$refs.calendar.checkChange();
     // console.log(this.$refs.calendar);
   },
 }
