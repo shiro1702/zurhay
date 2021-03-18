@@ -1,5 +1,12 @@
 [
   {
+    "name": "about",
+    "path": "/about",
+    "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/about/index.vue",
+    "chunkName": "pages/about/index",
+    "_name": "_f0ea3830"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index.vue",

@@ -1,3 +1,11 @@
+import webpack from 'webpack'
+
+import colors from 'vuetify/lib/util/colors'
+
+// import GenerateJsonPlugin from 'generate-json-webpack-plugin';
+
+// import { VBtn } from 'vuetify/lib';
+
 export default {
       /*
   ** Global CSS
@@ -26,18 +34,81 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  buildModules: [
-    // Simple usage
-    '@nuxtjs/vuetify',
-    // With options
-    // ['@nuxtjs/vuetify', 
-    // { /* module options */
-    //   customVariables: {
-    //     customVariables: ['~/assets/css/variables.sass']
-    //   }
-    // }]
-  ],
-  vuetify: {
-    optionsPath: './vuetify.options.js'
+  build: {
+    // plugins: [
+    //   new GenerateJsonPlugin(
+    //     'my-file.json',
+    //     { foo: 'bar', one: 'two' },
+    //     (key, value) => {
+    //       if (value === 'bar') {
+    //         return 'baz';
+    //       }
+    //       return value;
+    //     },
+    //     2
+    //   )
+    // ],
+    // extend(config, ctx) {
+    //   config.module.rules.push({
+    //     test: /\.(ogg|mp3|wav|mpe?g)$/i,
+    //     loader: 'file-loader',
+    //     options: {
+    //       name: '[path][name].[ext]'
+    //     }
+    //   })
+    // }
   },
+  buildModules: [
+    
+    // Simple usage
+    // '@nuxtjs/vuetify',
+
+    // With options
+    ['@nuxtjs/vuetify', 
+    { /* module options */
+      customVariables: {
+        customVariables: ['~/assets/css/variables.sass']
+      },
+      
+      theme: {
+        themes: {
+          light: {
+            primary: colors.red.darken1,
+            secondary: colors.grey.darken1,
+            accent: colors.shades.black,
+            error: colors.red.accent3,
+          },
+        },
+      },
+      // treeShake: {
+      //   components: {
+      //     VBtn, 
+      //   },
+      // },
+    }]
+  ],
+  // vuetify: {
+  //   optionsPath: './vuetify.options.js',
+  //   theme: {
+  //     themes: {
+  //       // light: {
+  //       //   primary: '#3f51b5',
+  //       //   secondary: '#b0bec5',
+  //       //   accent: '#8c9eff',
+  //       //   error: '#b71c1c',
+  //       // },
+  //       light: {
+  //         primary: colors.green.darken1,
+  //         secondary: colors.grey.darken1,
+  //         accent: colors.shades.black,
+  //         error: colors.red.accent3,
+  //       },
+  //     },
+  //   },
+  //   treeShake: {
+  //     // components: {
+  //     //   VBtn, 
+  //     // },
+  //   },
+  // },
 }

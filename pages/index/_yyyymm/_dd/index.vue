@@ -1,35 +1,66 @@
 <template>
   <div class="day-page">
-    <v-icon
-      class="day-page__moonicon"
+    <v-sheet height="64">
+      <v-toolbar
+        flat
       >
-      mdi-{{moon.name}}
-    </v-icon>
-    <h2>{{moon.moonDate}}-й лунный день</h2>
-    <v-btn
-      fab
-      text
-      small
-      color="grey darken-2" 
-      nuxt
-      :to="prevLink"
-    >
-      <v-icon small>
-        mdi-chevron-left
-      </v-icon>
-    </v-btn>
-    <v-btn
-      fab
-      text
-      small
-      color="grey darken-2"
-      nuxt
-      :to="nextLink"
-    >
-      <v-icon small>
-        mdi-chevron-right
-      </v-icon>
-    </v-btn>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              v-bind="attrs"
+              v-on="on"
+              fab
+              text
+              small
+              class="mr-4"
+              color="grey darken-2"
+              nuxt
+              :to="`/${$route.params.yyyymm}`"
+            >
+              <v-icon small>
+                mdi-calendar
+              </v-icon>
+              
+            </v-btn>
+          </template>
+          <span>в календарь</span>
+        </v-tooltip>
+        <v-btn
+          fab
+          text
+          small
+          color="grey darken-2" 
+          nuxt
+          :to="prevLink"
+        >
+          <v-icon small>
+            mdi-chevron-left
+          </v-icon>
+        </v-btn>
+        <div class="d-flex mx-2">
+          <v-icon
+            class="day-page__moonicon mr-2"
+            >
+            mdi-{{moon.name}}
+          </v-icon>
+          <h2 >{{moon.moonDate}}-й лунный день</h2>
+        </div>
+        <v-btn
+          fab
+          text
+          small
+          color="grey darken-2"
+          nuxt
+          :to="nextLink"
+        >
+          <v-icon small>
+            mdi-chevron-right
+          </v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+    </v-sheet>
+    
     <v-row>
       <v-col>
         info

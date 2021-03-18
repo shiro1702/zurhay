@@ -41,7 +41,7 @@ export default {
   data: () => ({
     links: [
       {
-        title: 'Главная',
+        title: 'Календарь',
         name: 'index'
       },
       {

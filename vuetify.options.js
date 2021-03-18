@@ -9,7 +9,6 @@
 // import Vuetify, {
 //   VBtn,
 // } from 'vuetify/lib'
-
 export default {
   breakpoint: {},
   icons: {},
@@ -17,28 +16,21 @@ export default {
     ru: true
   },
   // rtl: true,
-  theme: {
-    // light: {
-    //   primary: colors.red.darken1, // #E53935
-    //   secondary: colors.red.lighten4, // #FFCDD2
-    //   accent: colors.indigo.base, // #3F51B5
-    // },
-
-    themes: {
-      // light: {
-      //   primary: '#3f51b5',
-      //   secondary: '#b0bec5',
-      //   accent: '#8c9eff',
-      //   error: '#b71c1c',
-      // },
-      light: {
-        primary: '#E53935',
-        secondary: '#FFCDD2',
-        accent: '#3F51B5'
-      },
-    },
-
-  },
+  // theme: {
+  //   themes: {
+  //     // light: {
+  //     //   primary: '#3f51b5',
+  //     //   secondary: '#b0bec5',
+  //     //   accent: '#8c9eff',
+  //     //   error: '#b71c1c',
+  //     // },
+  //     light: {
+  //       primary: '#E53935',
+  //       secondary: '#FFCDD2',
+  //       accent: '#3F51B5'
+  //     },
+  //   },
+  // },
   customVariables: ['~/assets/css/variables.sass'],
   treeShake: {
     // components: {
