@@ -36,7 +36,7 @@ export default {
         let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
         return 'на ' + d
       }
-      if ( this.$route.name === 'index-yyyymm-dd') {
+      if ( this.$route.name === 'index-yyyymm-dd' || this.$route.name === 'index-yyyymm-dd-edit' ) {
         let options = {year: 'numeric', month: 'long', day: 'numeric'};
         let d = new Date(`${this.$route.params.yyyymm}-${this.$route.params.dd}`).toLocaleString('ru', options)
         return 'на ' + d

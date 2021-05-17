@@ -1,8 +1,10 @@
-import webpack from 'webpack'
+// import webpack from 'webpack'
 
 import colors from 'vuetify/lib/util/colors'
 
-// import GenerateJsonPlugin from 'generate-json-webpack-plugin';
+import GenerateJsonPlugin from 'generate-json-webpack-plugin';
+
+import WriteJsonPlugin from 'write-json-webpack-plugin';
 
 // import { VBtn } from 'vuetify/lib';
 
@@ -35,19 +37,18 @@ export default {
     ]
   },
   build: {
-    // plugins: [
-    //   new GenerateJsonPlugin(
-    //     'my-file.json',
-    //     { foo: 'bar', one: 'two' },
-    //     (key, value) => {
-    //       if (value === 'bar') {
-    //         return 'baz';
-    //       }
-    //       return value;
-    //     },
-    //     2
-    //   )
-    // ],
+    plugins: [
+      // new GenerateJsonPlugin(
+      //   'my-file.json',
+      //   { foo: 'bar', one: 'two' },
+      // )
+      new WriteJsonPlugin({
+        object: { foo: 'bar', one: 'two' },
+        // path: './static',
+        // default output is timestamp.json
+        filename: 'my-file.json',
+      })
+    ],
     // extend(config, ctx) {
     //   config.module.rules.push({
     //     test: /\.(ogg|mp3|wav|mpe?g)$/i,
@@ -87,6 +88,11 @@ export default {
       // },
     }]
   ],
+
+  /*
+   ** Modules - https://nuxtjs.org/docs/2.x/directory-structure/modules
+   */
+  modules: ['@nuxtjs/axios']
   // vuetify: {
   //   optionsPath: './vuetify.options.js',
   //   theme: {

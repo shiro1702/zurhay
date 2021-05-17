@@ -58,18 +58,6 @@
           </v-icon>
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn
-          fab
-          text
-          small
-          color="grey darken-2" 
-          nuxt
-          :to="$route.path + '/edit'"
-        >
-          <v-icon small>
-            mdi-pencil
-          </v-icon>
-        </v-btn>
       </v-toolbar>
     </v-sheet>
     
@@ -104,15 +92,6 @@ export default {
     // if (!params.yyyymm) {
     //   return redirect('/'+getYYYYMM())
     // }
-  },
-
-  async asyncData({ params, $axios }) {
-    try {
-      const tracked = await $axios.$get(`/month/${params.yyyymm}/${params.dd}.json`)
-      return { tracked }
-    } catch (error) {
-      return { }
-    }
   },
   data: () => ({
   }),

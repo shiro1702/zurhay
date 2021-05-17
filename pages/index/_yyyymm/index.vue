@@ -54,37 +54,53 @@
         
           <template v-slot:day="{ date }">
             <v-container>
-              <v-row v-if="tracked[date]"
+              <v-row 
               align="center"
               justify="end"
               >
-                <v-tooltip bottom v-if="tracked[date].travel && tracked[date].travel.positive">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-icon
-                      small
-                      v-bind="attrs"
-                      v-on="on"
-                      class="mr-2"
-                    >
-                      mdi-airplane
-                    </v-icon>
-                  </template>
-                  <span>  </span>
-                </v-tooltip>
-                <v-tooltip bottom  v-if="tracked[date].haircut && tracked[date].haircut.positive" >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-icon
-                      small
-                      v-bind="attrs"
-                      v-on="on"
-                      class="mr-2"
-                    >
-                      mdi-content-cut
-                    </v-icon>
-                  </template>
-                  <span>{{tracked[date].haircut.text}}</span>
-                </v-tooltip>
-                
+                <template v-if="tracked[date]"> 
+                  <v-tooltip bottom v-if="tracked[date].travel && tracked[date].travel.positive">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-icon
+                        small
+                        v-bind="attrs"
+                        v-on="on"
+                        class="mr-2"
+                      >
+                        mdi-airplane
+                      </v-icon>
+                    </template>
+                    <span>  </span>
+                  </v-tooltip>
+                  <v-tooltip bottom v-if="tracked[date].haircut && tracked[date].haircut.positive" >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-icon
+                        small
+                        v-bind="attrs"
+                        v-on="on"
+                        class="mr-2"
+                      >
+                        mdi-content-cut
+                      </v-icon>
+                    </template>
+                    <span>{{tracked[date].haircut.text}}</span>
+                  </v-tooltip>
+                </template>
+                <template v-else>
+                  <v-tooltip bottom v-if="!tracked[date]">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-icon
+                        small
+                        v-bind="attrs"
+                        v-on="on"
+                        class="mr-2"
+                      >
+                        mdi-information-outline
+                      </v-icon>
+                    </template>
+                    <span> нет информации </span>
+                  </v-tooltip>
+                </template>
               </v-row>
             </v-container>
             <!-- <span> {{getMoonPhase(date).phase}}</span>
@@ -114,7 +130,6 @@
           </template>
           
           <template v-slot:day-label="{ date, day, month, year,  present,}">
-
             <v-btn
               fab
               rounded
@@ -145,6 +160,7 @@
 </template>
 
 <script>
+
 import { getMoonPhase } from '@/assets/js/moon.js'
 import { getYYYYMM } from '@/assets/js/getDate.js'
 
@@ -163,40 +179,18 @@ export default {
       ]
     }
   },
+
+  async asyncData({ params, $axios }) {
+    try {
+      const tracked = await $axios.$get(`/month/${params.yyyymm}.json`)
+      return { tracked }
+    } catch (error) {
+      return { }
+    }
+  },
   data: () => ({
     todayLink: '/'+getYYYYMM(),
     focus: '2021-03-14',
-    tracked: {
-      '2021-03-09': {
-      },
-      '2021-03-08': {},
-      '2021-03-07': {},
-      '2021-03-06': {},
-      '2021-03-05': {},
-      '2021-03-04': {},
-      '2021-03-03': {},
-      '2021-03-14': {
-        haircut: {
-          positive: false,
-          text: 'к укорочению жизни'
-        }
-      },
-      '2021-03-15': {
-        haircut: {
-          positive: false,
-          text: 'к конфликтам и ссорам'
-        }
-      },
-      '2021-03-16': {
-        haircut: {
-          positive: true,
-          text: 'к улучшению благосостояния'
-        },
-        travel: {
-          positive: true,
-        }
-      },
-    },
     colors: ['#1867c0', '#fb8c00', '#000000'],
     category: ['Development', 'Meetings', 'Slacking'],
   }),
@@ -218,8 +212,8 @@ export default {
     }
   },
   created(){
-    // this.focus = new Date();
-    this.focus = '2021-03-14';
+    this.focus = new Date();
+    // this.focus = '2021-03-14';
     console.log(this.$route.params.yyyymm);
     console.log(`${this.$route.params.yyyymm}-1`);
   },
