@@ -1,83 +1,97 @@
 <template>
   <div class="day-page">
-    <v-sheet height="64">
-      <v-toolbar
-        flat
-      >
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
+    <div class="d-flex flex-column flex-md-row align-start justify-space-between ">
+      <v-date-picker
+        :value="date"
+        class="order-last order-sm-0"
+        color="primary lighten-1"
+        locale="ru"
+        elevation="4"
+        no-title
+        :first-day-of-week="1"
+        @click:date="goToDate"
+      ></v-date-picker>
+      <div class="ml-sm-8" :style="{width:'100%'}">
+        <div class="d-flex align-center justify-center justify-sm-space-between mb-6">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                v-bind="attrs"
+                v-on="on"
+                fab
+                text
+                small
+                class="mr-0 mr-sm-4"
+                color="grey darken-2"
+                nuxt
+                :to="`/${$route.params.yyyymm}`"
+              >
+                <v-icon small>
+                  mdi-calendar
+                </v-icon>
+                
+              </v-btn>
+            </template>
+            <span>в календарь</span>
+          </v-tooltip>
+          <div class="d-flex align-center">
             <v-btn
-              v-bind="attrs"
-              v-on="on"
               fab
               text
               small
-              class="mr-4"
-              color="grey darken-2"
+              color="grey darken-2" 
               nuxt
-              :to="`/${$route.params.yyyymm}`"
+              :to="prevLink"
+              replace
             >
               <v-icon small>
-                mdi-calendar
+                mdi-chevron-left
               </v-icon>
-              
             </v-btn>
-          </template>
-          <span>в календарь</span>
-        </v-tooltip>
-        <v-btn
-          fab
-          text
-          small
-          color="grey darken-2" 
-          nuxt
-          :to="prevLink"
-        >
-          <v-icon small>
-            mdi-chevron-left
-          </v-icon>
-        </v-btn>
-        <div class="d-flex mx-2">
-          <v-icon
-            class="day-page__moonicon mr-2"
+            <div class="d-flex mx-0 mx-md-2">
+              <v-icon
+                class="day-page__moonicon mr-2"
+                >
+                mdi-{{moon.name}}
+              </v-icon>
+              <h2 class="text-subtitle-1 text-sm-subtitle-1 text-md-h6 text-no-wrap">{{moon.moonDate}}-й лунный день</h2>
+            </div>
+            <v-btn
+              fab
+              text
+              small
+              color="grey darken-2"
+              nuxt
+              :to="nextLink"
+              replace
             >
-            mdi-{{moon.name}}
-          </v-icon>
-          <h2 >{{moon.moonDate}}-й лунный день</h2>
+              <v-icon small>
+                mdi-chevron-right
+              </v-icon>
+            </v-btn>
+          </div>
+          <v-btn
+            class="ml-auto d-none d-sm-flex"
+            color="grey darken-2" 
+            :to="$route.path + '/edit'"
+            replace
+            nuxt
+            fab
+            text
+            small
+          >
+            <v-icon small>
+              mdi-pencil
+            </v-icon>
+          </v-btn>
         </div>
-        <v-btn
-          fab
-          text
-          small
-          color="grey darken-2"
-          nuxt
-          :to="nextLink"
-        >
-          <v-icon small>
-            mdi-chevron-right
-          </v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn
-          fab
-          text
-          small
-          color="grey darken-2" 
-          nuxt
-          :to="$route.path + '/edit'"
-        >
-          <v-icon small>
-            mdi-pencil
-          </v-icon>
-        </v-btn>
-      </v-toolbar>
-    </v-sheet>
-    
-    <v-row>
-      <v-col>
-        info
-      </v-col>
-    </v-row>
+        <div v-if="dayInfo && dayInfo.info" v-html="dayInfo.info" >
+        </div>
+        <div v-else >
+          пока нет информации
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -106,20 +120,30 @@ export default {
     // }
   },
 
-  async asyncData({ params, $axios }) {
+  async asyncData({ $axios, $config, params }) {
     try {
-      const tracked = await $axios.$get(`/month/${params.yyyymm}/${params.dd}.json`)
-      return { tracked }
+      const dayInfo = await $axios.$get(`/month/${params.yyyymm}/${params.yyyymm}-${params.dd}.json`)
+      return { dayInfo }
     } catch (error) {
-      return { }
+      return { 'dayInfo': {} }
     }
   },
   data: () => ({
+    // date: null,
   }),
+  // created(){
+  //   this.date =`${this.$route.params.yyyymm}-${this.$route.params.dd}`;
+  // },
+  // beforeRouteUpdate(to, from, next){
+  //   this.date =`${this.$route.params.yyyymm}-${this.$route.params.dd}`;
+  //   next();
+  // },
   computed: {
     moon(){
-      let date = new Date( `${this.$route.params.yyyymm}-${this.$route.params.dd}`)
-      return getMoonPhase(date)
+      return getMoonPhase(new Date(this.date) );
+    },
+    date(){
+        return `${this.$route.params.yyyymm}-${this.$route.params.dd}`;
     },
     prevLink(){
       return '/'+getYYYYMMDD(-1, `${this.$route.params.yyyymm}-${this.$route.params.dd}`,'-', '/');
@@ -128,6 +152,11 @@ export default {
       return '/'+getYYYYMMDD(1, `${this.$route.params.yyyymm}-${this.$route.params.dd}`,'-', '/');
     },
   },
+  methods: {
+    goToDate(value){
+      this.$router.push('/'+getYYYYMMDD(0, `${value }`,'-', '/'));
+    }
+  }
   
 }
 </script>

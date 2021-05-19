@@ -13,7 +13,8 @@
     "babel-loader": "^8.2.2",
     "eslint": "^7.21.0",
     "generate-json-webpack-plugin": "^2.0.0",
-    "nuxt": "^2.15.2"
+    "nuxt": "^2.15.2",
+    "tiptap-vuetify": "^2.24.0"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",

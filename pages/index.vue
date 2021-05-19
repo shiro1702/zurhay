@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="title text-h2">Зурхай {{title}}</h1>
-      <NuxtChild  />
+    <h1 class="title text-h5 text-sm-h4 text-md-h3 mb-8">Зурхай {{title}}</h1>
+    <NuxtChild  />
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="sass">
-.title
-  font-size: 24px
-  font-weight: normal
+// .title
+//   font-size: 24px
+//   font-weight: normal
 </style>

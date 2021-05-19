@@ -36,6 +36,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
+  plugins: ['~/plugins/TiptapVuetify'],
   build: {
     plugins: [
       // new GenerateJsonPlugin(
@@ -47,8 +49,9 @@ export default {
         // path: './static',
         // default output is timestamp.json
         filename: 'my-file.json',
-      })
+      }),
     ],
+    transpile: ['vuetify/lib', "tiptap-vuetify"],
     // extend(config, ctx) {
     //   config.module.rules.push({
     //     test: /\.(ogg|mp3|wav|mpe?g)$/i,

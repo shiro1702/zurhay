@@ -1,4 +1,11 @@
 {
+  "index": {
+    "haircut": {
+      "positive": false,
+      "text": "к укорочению жизни"
+    },
+    "info": "информация за май"
+  },
   "2021-05-16": {
     "haircut": {
       "positive": false,

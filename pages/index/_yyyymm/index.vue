@@ -1,162 +1,139 @@
 <template>
-  <v-row>
-    <v-col>
-      <v-sheet height="64">
-        <v-toolbar
-          flat
+  <div>
+    <div v-if="tracked && tracked.index && tracked.index.info" 
+      class="mb-4"
+      v-html="tracked.index.info"></div>
+    <v-sheet height="64">
+      <v-toolbar
+        flat
+      >
+        <v-btn
+          outlined
+          class="mr-4"
+          color="grey darken-2"
+          nuxt
+          :to="todayLink"
         >
-          <v-btn
-            outlined
-            class="mr-4"
-            color="grey darken-2"
-            nuxt
-            :to="todayLink"
-          >
-            Сегодня
-          </v-btn>
+          Сегодня
+        </v-btn>
+        <v-btn
+          fab
+          text
+          small
+          color="grey darken-2" 
+          nuxt
+          :to="prevLink"
+        >
+          <v-icon small>
+            mdi-chevron-left
+          </v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          text
+          small
+          color="grey darken-2"
+          nuxt
+          :to="nextLink"
+        >
+          <v-icon small>
+            mdi-chevron-right
+          </v-icon>
+        </v-btn>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+    </v-sheet>
+    <v-calendar-monthly
+      ref="calendar"
+      color="primary"
+      :start="`${$route.params.yyyymm}-1`"
+      :end="`${$route.params.yyyymm}-1`"
+      locale="ru"
+      :show-month-on-first="false"
+      :weekdays="[ 1, 2, 3, 4, 5, 6, 0]"
+    >
+    
+      <template v-slot:day-label="{ date, day, month, year,  present,}">
+        <NuxtLink class="d-flex flex-row justify-center align-center"
+            :to="`/${year}-${month>9?month:'0'+month}/${day>9?day:'0'+day}`">
           <v-btn
             fab
-            text
+            rounded
             small
-            color="grey darken-2" 
-            nuxt
-            :to="prevLink"
-          >
-            <v-icon small>
-              mdi-chevron-left
-            </v-icon>
-          </v-btn>
-          <v-btn
-            fab
-            text
-            small
-            color="grey darken-2"
-            nuxt
-            :to="nextLink"
-          >
-            <v-icon small>
-              mdi-chevron-right
-            </v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
-        </v-toolbar>
-      </v-sheet>
-      <v-sheet height="500">
-        <v-calendar-monthly
-          ref="calendar"
-          color="primary"
-          :start="`${$route.params.yyyymm}-1`"
-          :end="`${$route.params.yyyymm}-1`"
-          locale="ru"
-          :show-month-on-first="false"
-          :weekdays="[ 1, 2, 3, 4, 5, 6, 0]"
-        >
-        
-          <template v-slot:day="{ date }">
-            <v-container>
-              <v-row 
-              align="center"
-              justify="end"
-              >
-                <template v-if="tracked[date]"> 
-                  <v-tooltip bottom v-if="tracked[date].travel && tracked[date].travel.positive">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon
-                        small
-                        v-bind="attrs"
-                        v-on="on"
-                        class="mr-2"
-                      >
-                        mdi-airplane
-                      </v-icon>
-                    </template>
-                    <span>  </span>
-                  </v-tooltip>
-                  <v-tooltip bottom v-if="tracked[date].haircut && tracked[date].haircut.positive" >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon
-                        small
-                        v-bind="attrs"
-                        v-on="on"
-                        class="mr-2"
-                      >
-                        mdi-content-cut
-                      </v-icon>
-                    </template>
-                    <span>{{tracked[date].haircut.text}}</span>
-                  </v-tooltip>
-                </template>
-                <template v-else>
-                  <v-tooltip bottom v-if="!tracked[date]">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon
-                        small
-                        v-bind="attrs"
-                        v-on="on"
-                        class="mr-2"
-                      >
-                        mdi-information-outline
-                      </v-icon>
-                    </template>
-                    <span> нет информации </span>
-                  </v-tooltip>
-                </template>
-              </v-row>
-            </v-container>
-            <!-- <span> {{getMoonPhase(date).phase}}</span>
-            -->
-            <!-- <v-icon
-            small
-            >
-              mdi-{{getMoonPhase(date).name}}
-            </v-icon>
-            <span> {{getMoonPhase(date).moonDate}}</span> -->
-
-            <!-- <v-row
-              class="fill-height"
-            >
-              <template v-if="past && tracked[date]">
-                <v-sheet
-                  v-for="(percent, i) in tracked[date]"
-                  :key="i"
-                  :title="category[i]"
-                  :color="colors[i]"
-                  :width="`${percent}%`"
-                  height="100%"
-                  tile
-                ></v-sheet>
-              </template>
-            </v-row> -->
-          </template>
-          
-          <template v-slot:day-label="{ date, day, month, year,  present,}">
-            <v-btn
-              fab
-              rounded
-              small
-              color="primary"
-              :text="!present"
-              nuxt
-              :to="`/${year}-${month>9?month:'0'+month}/${day>9?day:'0'+day}`"
-              > 
-              <span class="date-text">
-              {{day}} 
-              </span>
-            </v-btn>
-            <span class="moon-date">
-              <v-icon
-              x-small
-              >
-                mdi-{{getMoonPhase(date).name}}
-              </v-icon>
-              <span class="moon-date__text"> {{getMoonPhase(date).moonDate}}</span>
+            color="primary"
+            :text="!present"
+            > 
+            <span class="date-text">
+            {{day}} 
             </span>
-          </template>
-        </v-calendar-monthly>
-      </v-sheet>
-
-    </v-col>
-  </v-row>
+          </v-btn>
+          <v-tooltip top v-if="$vuetify.breakpoint.name != 'xs'" >
+            <template v-slot:activator="{ on, attrs }">
+              <span class="moon-date ml-auto" 
+                  v-bind="attrs"
+                  v-on="on">
+                <v-icon
+                  small
+                >
+                  mdi-{{getMoonPhase(date).name}}
+                </v-icon>
+                <span class="moon-date__text"> {{getMoonPhase(date).moonDate}}</span>
+              </span>
+            </template>
+            <span> Фаза луны - {{getMoonPhase(date).percent}}%</span>
+          </v-tooltip>
+        </NuxtLink>
+      </template>
+      
+      <template v-if="$vuetify.breakpoint.name != 'xs'" v-slot:day="{ date }">
+        <div class="d-flex flex-row justify-end pb-2">
+            <template v-if="tracked[date]"> 
+              <v-tooltip bottom v-if="tracked[date].travel && tracked[date].travel.positive">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    small
+                    v-bind="attrs"
+                    v-on="on"
+                    class="mr-2"
+                  >
+                    mdi-airplane
+                  </v-icon>
+                </template>
+                <span>  </span>
+              </v-tooltip>
+              <v-tooltip bottom v-if="tracked[date].haircut && tracked[date].haircut.positive" >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    small
+                    v-bind="attrs"
+                    v-on="on"
+                    class="mr-2"
+                  >
+                    mdi-content-cut
+                  </v-icon>
+                </template>
+                <span>{{tracked[date].haircut.text}}</span>
+              </v-tooltip>
+            </template>
+            <template v-else>
+              <v-tooltip bottom v-if="!tracked[date]">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    small
+                    v-bind="attrs"
+                    v-on="on"
+                    class="mr-2"
+                  >
+                    mdi-information-outline
+                  </v-icon>
+                </template>
+                <span> нет информации </span>
+              </v-tooltip>
+            </template>
+        </div>
+      </template>
+    </v-calendar-monthly>
+  </div>
 </template>
 
 <script>
@@ -180,17 +157,17 @@ export default {
     }
   },
 
-  async asyncData({ params, $axios }) {
+  async asyncData({ $axios, $config, params }) {
     try {
       const tracked = await $axios.$get(`/month/${params.yyyymm}.json`)
       return { tracked }
     } catch (error) {
-      return { }
+      return { 'tracked': {} }
     }
   },
   data: () => ({
     todayLink: '/'+getYYYYMM(),
-    focus: '2021-03-14',
+    focus: '',
     colors: ['#1867c0', '#fb8c00', '#000000'],
     category: ['Development', 'Meetings', 'Slacking'],
   }),
@@ -201,6 +178,9 @@ export default {
     nextLink(){
       return '/'+getYYYYMM(1, `${this.$route.params.yyyymm}-1`);
     },
+    date(){
+      return `${this.$route.params.yyyymm}-1`;
+    } 
   },
   methods: {
     // viewDay({date}){
@@ -209,13 +189,23 @@ export default {
     // },
     getMoonPhase(date){
       return getMoonPhase(date)
-    }
+    },
+    functionEvents (date) {
+      const [,, day] = date.split('-')
+      if ([12, 17, 28].includes(parseInt(day, 10))) return true
+      if ([1, 19, 22].includes(parseInt(day, 10))) return ['red', '#00f']
+      return false
+    },
+    month(month){
+      console.log('month',month);
+
+    },
   },
   created(){
     this.focus = new Date();
     // this.focus = '2021-03-14';
-    console.log(this.$route.params.yyyymm);
-    console.log(`${this.$route.params.yyyymm}-1`);
+    // console.log(this.$route.params.yyyymm);
+    // console.log(`${this.$route.params.yyyymm}-1`);
   },
   mounted () {
     // this.$refs.calendar.checkChange();
