@@ -49,11 +49,17 @@
               </v-icon>
             </v-btn>
             <div class="d-flex mx-0 mx-md-2">
-              <v-icon
-                class="day-page__moonicon mr-2"
-                >
-                mdi-{{moon.name}}
-              </v-icon>
+              <v-tooltip top v-if="$vuetify.breakpoint.name != 'xs'" >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    class="day-page__moonicon mr-2"
+                    v-bind="attrs"
+                    v-on="on">
+                    mdi-{{moon.name}}
+                  </v-icon>
+                </template>
+                <span> Фаза луны - {{moon.percent}}%</span>
+              </v-tooltip>
               <h2 class="text-subtitle-1 text-sm-subtitle-1 text-md-h6 text-no-wrap">{{moon.moonDate}}-й лунный день</h2>
             </div>
             <v-btn

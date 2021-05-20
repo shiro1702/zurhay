@@ -52,10 +52,6 @@ export default {
         title: 'Планы по развитию проекта',
         name: 'plans'
       }
-      
-      // 'Messages',
-      // 'Profile',
-      // 'Updates',
     ],
   }),
 }
