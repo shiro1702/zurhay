@@ -1,6 +1,6 @@
 <template>
   <div class="day-page">
-    <div class="d-flex flex-column flex-md-row align-start justify-space-between ">
+    <div class="d-flex flex-column flex-md-row align-start justify-space-between">
       <v-date-picker
         :value="date"
         class="order-last order-sm-0"
@@ -11,8 +11,15 @@
         :first-day-of-week="1"
         @click:date="goToDate"
       ></v-date-picker>
-      <div class="ml-sm-8" :style="{width:'100%'}">
-        <div class="d-flex align-center justify-center justify-sm-space-between mb-6">
+      <div 
+        class="ml-sm-8" 
+        :style="{width:'100%'}"
+        v-touch="{
+          left: () =>  {$router.push(prevLink)},
+          right: () => {$router.push(nextLink)}
+        }"
+      >
+        <div class="d-flex align-center justify-center justify-sm-space-between mb-3 mb-sm-6">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -49,7 +56,7 @@
               </v-icon>
             </v-btn>
             <div class="d-flex mx-0 mx-md-2">
-              <v-tooltip top v-if="$vuetify.breakpoint.name != 'xs'" >
+              <v-tooltip top >
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     class="day-page__moonicon mr-2"
@@ -91,9 +98,54 @@
             </v-icon>
           </v-btn>
         </div>
-        <div v-if="dayInfo && dayInfo.info" v-html="dayInfo.info" >
-        </div>
-        <div v-else >
+        <template v-if="dayInfo && dayInfo.info" >
+          <div 
+              v-if="dayInfo.custom && dayInfo.custom.text"
+              class="mb-3 mb-sm-4" >
+            <v-icon
+              small
+              v-bind="attrs"
+              v-on="on"
+              color="primary"
+              class="mr-2"
+            >
+              mdi-calendar
+            </v-icon>
+            <span>{{dayInfo.custom.text}}</span>
+          </div>
+          <div 
+              v-if="dayInfo.travel && dayInfo.travel.text"
+              class="mb-3 mb-sm-4" >
+            <v-icon
+              small
+              v-bind="attrs"
+              v-on="on"
+              :color="dayInfo.travel.positive?'green':'red'"
+              class="mr-2"
+            >
+              mdi-airplane
+            </v-icon>
+            <span>{{dayInfo.travel.text}}</span>
+          </div>
+          <div 
+              v-if="dayInfo.haircut && dayInfo.haircut.text" 
+              class="mb-3 mb-sm-4" >
+            <v-icon
+              small
+              v-bind="attrs"
+              v-on="on"
+              :color="dayInfo.haircut.positive?'green':'red'"
+              class="mr-2"
+            >
+              mdi-content-cut
+            </v-icon>
+            <span>{{dayInfo.haircut.text}}</span>
+          </div>
+          <div v-if="dayInfo.info" v-html="dayInfo.info" >
+          </div>
+        </template>
+        <div v-else 
+            class="mb-3 mb-sm-6" >
           пока нет информации
         </div>
       </div>

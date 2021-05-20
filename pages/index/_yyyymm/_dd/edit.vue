@@ -49,7 +49,7 @@
               </v-icon>
             </v-btn>
             <div class="d-flex mx-0 mx-md-2">
-              <v-tooltip top v-if="$vuetify.breakpoint.name != 'xs'" >
+              <v-tooltip top >
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     class="day-page__moonicon mr-2"

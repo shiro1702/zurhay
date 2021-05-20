@@ -1,6 +1,6 @@
 <template>
   <div class="day-page">
-    <h1 class="title text-h2 mb-8">
+    <h1 class="text-h5 text-sm-h4 text-md-h3 mb-4 mb-sm-8">
       Планы по развитию
     </h1>
   <v-container style="max-width: 600px;">
@@ -20,12 +20,13 @@
       
         <v-row justify="space-between">
           <v-col
-            cols="3"
+            cols="12"
+            sm="3"
             v-text="event.date"
           ></v-col>
           <v-col
-            cols="9"
-            
+            cols="12"
+            sm="9"
           >
           <div v-text="event.text"></div>
           <div 
