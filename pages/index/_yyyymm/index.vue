@@ -88,7 +88,7 @@
       <template v-if="$vuetify.breakpoint.name != 'xs'" v-slot:day="{ date }">
         <div class="d-flex flex-row justify-end pb-2">
             <template v-if="tracked[date]"> 
-              <v-tooltip bottom v-if="tracked[date].travel && tracked[date].travel.positive">
+              <v-tooltip max-width="200" bottom v-if="tracked[date].custom && tracked[date].custom.text">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     small
@@ -96,17 +96,32 @@
                     v-on="on"
                     class="mr-2"
                   >
-                    mdi-airplane
+                    mdi-calendar
                   </v-icon>
                 </template>
-                <span>  </span>
+                <span>{{tracked[date].custom.text}}</span>
               </v-tooltip>
-              <v-tooltip bottom v-if="tracked[date].haircut && tracked[date].haircut.positive" >
+              <v-tooltip max-width="200" bottom v-if="tracked[date].travel && tracked[date].travel.positive">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     small
                     v-bind="attrs"
                     v-on="on"
+                    :color="tracked[date].travel.positive?'green':'red'"
+                    class="mr-2"
+                  >
+                    mdi-airplane
+                  </v-icon>
+                </template>
+                <span>{{tracked[date].travel.text}}</span>
+              </v-tooltip>
+              <v-tooltip max-width="200" bottom v-if="tracked[date].haircut" >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    small
+                    v-bind="attrs"
+                    v-on="on"
+                    :color="tracked[date].haircut.positive?'green':'red'"
                     class="mr-2"
                   >
                     mdi-content-cut
@@ -196,10 +211,9 @@ export default {
       if ([1, 19, 22].includes(parseInt(day, 10))) return ['red', '#00f']
       return false
     },
-    month(month){
-      console.log('month',month);
-
-    },
+    // month(month){
+    //   console.log('month',month);
+    // },
   },
   created(){
     this.focus = new Date();

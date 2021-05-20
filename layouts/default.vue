@@ -11,7 +11,9 @@
       <v-alert
         border="left"
         dismissible
-        type="info"
+        colored-border
+        color="primary accent-4"
+        elevation="4"
       >
       <p>Сейчас сайт наполнен частично со стороних ресурсов.
       Ведеться поиск буддисткого астролога. </p>

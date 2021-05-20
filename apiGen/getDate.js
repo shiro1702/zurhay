@@ -1,4 +1,5 @@
-export function getYYYYMM(amountMM = 0, date = new Date(), separatorYYYYMM = '-' ){
+
+exports.getYYYYMM = function(amountMM = 0, date = new Date(), separatorYYYYMM = '-' ) {
   let d = new Date(date);
   if (amountMM) {
     d.setMonth(d.getMonth() + amountMM)
@@ -8,8 +9,8 @@ export function getYYYYMM(amountMM = 0, date = new Date(), separatorYYYYMM = '-'
   return '' + d.getFullYear() + separatorYYYYMM + month;
 }
 
-export function getYYYYMMDD(amountDD = 0, date = new Date(), separatorYYYYMM = '-', separatorMMDD = '-'){
-
+exports.getYYYYMMDD = function(amountDD = 0, date = new Date(), separatorYYYYMM = '-', separatorMMDD = '-') {
+  
   let d = new Date(date);
   if (amountDD) {
     d.setDate(d.getDate() + amountDD)

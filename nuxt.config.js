@@ -77,7 +77,7 @@ export default {
       theme: {
         themes: {
           light: {
-            primary: colors.red.darken1,
+            primary: colors.indigo.darken1,
             secondary: colors.grey.darken1,
             accent: colors.shades.black,
             error: colors.red.accent3,

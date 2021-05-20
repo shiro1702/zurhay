@@ -106,7 +106,11 @@
           v-model="dayInfo.travel.text"
           label="travel"
         ></v-text-field>
-        <Editor v-model="dayInfo.info"/>
+        <Editor class="mb-5" v-model="dayInfo.info"/>
+        <v-text-field
+          v-model="dayInfo.custom.text"
+          label="Custom"
+        ></v-text-field>
         <v-btn
           
           :loading="loading"

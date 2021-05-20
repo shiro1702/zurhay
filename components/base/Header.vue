@@ -47,6 +47,10 @@ export default {
       {
         title: 'О проекте',
         name: 'about'
+      },
+      {
+        title: 'Планы по развитию проекта',
+        name: 'plans'
       }
       
       // 'Messages',

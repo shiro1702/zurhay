@@ -1,6 +1,6 @@
 <template>
   <div class="day-page">
-    <h1 class="title text-h2">
+    <h1 class="title text-h2 mb-8">
       О проекте
     </h1>
 
