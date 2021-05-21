@@ -17,7 +17,7 @@
         :key="link.name"
         text
         nuxt
-        :to="{name: link.name}"
+        :to="{name: link.name, params: link.params}"
         class="mr-2 d-none d-sm-flex"
         :class="{'v-btn--active': $route.name === link.name }"
       >
@@ -38,7 +38,7 @@
           <v-menu
             bottom
             right
-            offset-y="true"
+            offset-y
             transition="slide-x-transition"
           >
             <template v-slot:activator="{ on, attrs }">
