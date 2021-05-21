@@ -13,11 +13,12 @@ export default {
       /*
   ** for nuxt grnrrate
   */
-  // target: 'static',
+  target: 'static',
   // router: {
   //   base: '/zurhay'
   // },
   generate: {
+    fallback: true,
     crawler: false,
     cache: {
       ignore: [
