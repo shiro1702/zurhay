@@ -14,7 +14,6 @@ export default {
   ** for nuxt grnrrate
   */
   target: 'static',
-  mode: 'spa',
   generate: {
     crawler: false,
     cache: {
