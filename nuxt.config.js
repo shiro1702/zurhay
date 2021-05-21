@@ -42,7 +42,7 @@ export default {
             console.log('res', res.data);
             routesFinal.push('/' + month );
             for (let date in res.data) {
-              let day = date.split('.')[date.split('.').length - 1];
+              let day = date.split('-')[date.split('-').length - 1];
               routesFinal.push('/' + month + '/' + day);
             }
             if (counter == months.length) {
