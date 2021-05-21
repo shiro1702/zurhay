@@ -49,6 +49,7 @@ export default {
             for (let date in res.data) {
               let day = date.split('-')[date.split('-').length - 1];
               routesFinal.push('/' + month + '/' + day);
+              routesFinal.push('/' + month + '/' + day + '/edit');
             }
             if (counter == months.length) {
               callback(null, routesFinal)
