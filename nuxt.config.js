@@ -13,10 +13,10 @@ export default {
       /*
   ** for nuxt grnrrate
   */
-  target: 'static',
-  router: {
-    base: '/zurhay'
-  },
+  // target: 'static',
+  // router: {
+  //   base: '/zurhay'
+  // },
   generate: {
     crawler: false,
     cache: {
