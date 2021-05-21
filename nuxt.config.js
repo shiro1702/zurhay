@@ -14,9 +14,11 @@ export default {
   ** for nuxt grnrrate
   */
   target: 'static',
-  // router: {
-  //   base: '/zurhay'
-  // },
+
+  router: {
+    // base: '/zurhay/'
+    base: '/'
+  },
   generate: {
     fallback: true,
     crawler: false,
