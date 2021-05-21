@@ -77,20 +77,6 @@
               </v-icon>
             </v-btn>
           </div>
-          <v-btn
-            class="ml-auto d-none d-sm-flex"
-            color="grey darken-2" 
-            :to="$route.path + '/edit'"
-            replace
-            nuxt
-            fab
-            text
-            small
-          >
-            <v-icon small>
-              mdi-pencil
-            </v-icon>
-          </v-btn>
         </div>
         <!-- <div v-if="dayInfo && dayInfo.info" v-html="dayInfo.info" >
         </div> -->
@@ -143,6 +129,9 @@ import Editor from "@/components/Editor";
 
 
 let dayInfoDefault = {
+  custom: {
+    text: ''
+  },
   haircut: {
       positive: false,
       text: ''

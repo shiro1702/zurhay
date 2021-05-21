@@ -5,5 +5,6 @@ start json generte
 this month
 npm run genDateJson
 
-month ago
+[ ] - month ago
 npm run genDateJson -month -1
+

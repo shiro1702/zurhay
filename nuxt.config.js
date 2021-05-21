@@ -2,13 +2,56 @@
 
 import colors from 'vuetify/lib/util/colors'
 
-import GenerateJsonPlugin from 'generate-json-webpack-plugin';
+import axios from 'axios'
 
 import WriteJsonPlugin from 'write-json-webpack-plugin';
 
 // import { VBtn } from 'vuetify/lib';
 
 export default {
+
+      /*
+  ** for nuxt grnrrate
+  */
+  target: 'static',
+  generate: {
+    crawler: false,
+    cache: {
+      ignore: [
+        '.nuxt', // buildDir
+        'static', // dir.static
+        'dist', // generate.dir
+        'node_modules',
+        '.**/*',
+        '.*',
+        'README.md'
+      ] // ignore changes applied on this files
+    },
+    routes(callback) {
+      let months = ['2021-05'];
+      let routesFinal = [];
+      let counter = 0;
+      console.log('months', months);
+      months.forEach(month => {
+        console.log('month', month);
+        console.log('url', 'http://localhost:3000/month/'+month+'.json');
+        axios.get('http://localhost:3000/month/'+month+'.json')
+          .then(res => {
+            counter++;
+            console.log('res', res.data);
+            routesFinal.push('/' + month );
+            for (let day in res.data) {
+              routesFinal.push('/' + month + '/' + day);
+            }
+            if (counter == months.length) {
+              callback(null, routesFinal)
+            }
+          })
+          .catch(callback)
+      })
+      
+    }
+  },
       /*
   ** Global CSS
   */
@@ -95,7 +138,11 @@ export default {
   /*
    ** Modules - https://nuxtjs.org/docs/2.x/directory-structure/modules
    */
-  modules: ['@nuxtjs/axios']
+  modules: ['@nuxtjs/axios'],
+
+  // router: {
+  //   base: '/nuxt-gh-pages/'
+  // },
   // vuetify: {
   //   optionsPath: './vuetify.options.js',
   //   theme: {
