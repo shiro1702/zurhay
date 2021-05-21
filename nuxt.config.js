@@ -14,6 +14,7 @@ export default {
   ** for nuxt grnrrate
   */
   target: 'static',
+  mode: 'spa',
   generate: {
     crawler: false,
     cache: {
@@ -140,10 +141,6 @@ export default {
    ** Modules - https://nuxtjs.org/docs/2.x/directory-structure/modules
    */
   modules: ['@nuxtjs/axios'],
-
-  // router: {
-  //   base: '/nuxt-gh-pages/'
-  // },
   // vuetify: {
   //   optionsPath: './vuetify.options.js',
   //   theme: {
