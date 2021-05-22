@@ -168,7 +168,8 @@ export default {
         {
           rel: 'next',
           href: this.nextLink
-        }
+        },
+        ...this.canonicalLink
       ]
     }
   },
@@ -176,9 +177,9 @@ export default {
   async asyncData({ $axios, $config, params }) {
     try {
       const tracked = await $axios.$get(`/month/${params.yyyymm}.json`)
-      return { tracked }
+      return { tracked, 'noInfo': false }
     } catch (error) {
-      return { 'tracked': {} }
+      return { 'tracked': {}, 'noInfo': true }
     }
   },
   data: () => ({
@@ -188,15 +189,24 @@ export default {
     category: ['Development', 'Meetings', 'Slacking'],
   }),
   computed: {
+    date(){
+      return `${this.$route.params.yyyymm}-1`;
+    },
     prevLink(){
       return '/'+getYYYYMM(-1, `${this.$route.params.yyyymm}-1`);
     },
     nextLink(){
       return '/'+getYYYYMM(1, `${this.$route.params.yyyymm}-1`);
     },
-    date(){
-      return `${this.$route.params.yyyymm}-1`;
-    } 
+    canonicalLink(){
+      if (this.noInfo) {
+        return [{
+          rel: 'canonical',
+          href: '/'
+        }]
+      }
+        return [];
+    },
   },
   methods: {
     // viewDay({date}){

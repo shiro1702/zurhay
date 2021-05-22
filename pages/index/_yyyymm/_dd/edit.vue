@@ -154,6 +154,10 @@ export default {
         {
           rel: 'next',
           href: this.nextLink
+        },
+        {
+          rel: 'canonical',
+          href: this.canonicalLink
         }
       ]
     }
@@ -186,6 +190,9 @@ export default {
     },
     nextLink(){
       return '/'+getYYYYMMDD(1, `${this.$route.params.yyyymm}-${this.$route.params.dd}`,'-', '/') + '/edit';
+    },
+    canonicalLink(){
+      return '/'+getYYYYMMDD(1, `${this.$route.params.yyyymm}-${this.$route.params.dd}`,'-', '/') + '';
     },
   },
   methods: {

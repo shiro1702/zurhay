@@ -6,8 +6,7 @@
     "generate": "nuxt generate",
     "start": "nuxt start",
     "genDateJson": "node ./apiGen",
-    "deploy": "gh-pages -d dist --dotfiles",
-    "deploy2": "push-dir --dir=dist --branch=main"
+    "deploy": "gh-pages -d dist --dotfiles"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",

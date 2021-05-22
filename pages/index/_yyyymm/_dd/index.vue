@@ -168,7 +168,8 @@ export default {
         {
           rel: 'next',
           href: this.nextLink
-        }
+        },
+        ...this.canonicalLink
       ]
     }
   },
@@ -181,9 +182,9 @@ export default {
   async asyncData({ $axios, $config, params }) {
     try {
       const dayInfo = await $axios.$get(`/month/${params.yyyymm}/${params.yyyymm}-${params.dd}.json`)
-      return { dayInfo }
+      return { dayInfo, 'noInfo': false }
     } catch (error) {
-      return { 'dayInfo': {} }
+      return { 'dayInfo': {}, 'noInfo': true }
     }
   },
   data: () => ({
@@ -208,6 +209,15 @@ export default {
     },
     nextLink(){
       return '/'+getYYYYMMDD(1, `${this.$route.params.yyyymm}-${this.$route.params.dd}`,'-', '/');
+    },
+    canonicalLink(){
+      if (this.noInfo) {
+        return [{
+          rel: 'canonical',
+          href: '/'
+        }]
+      }
+      return [];
     },
   },
   methods: {
