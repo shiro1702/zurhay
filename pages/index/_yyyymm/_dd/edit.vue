@@ -121,6 +121,7 @@
         <LazyEditor class="mb-5" v-model="dayInfo.info"/>
         <v-text-field
           v-model="dayInfo.custom.text"
+          :key="$route.params.yyyymm + $route.params.dd"
           label="допольнительная информация"
         ></v-text-field>
         <v-btn
@@ -143,10 +144,13 @@ import { getMoonPhase } from '@/assets/js/moon.js'
 
 import { download } from '@/assets/js/download.js'
 
+import mergeDeep from '@/assets/js/mergeDeep.js'
+
+
 import LazyEditor from "@/components/Editor";
 
 
-let dayInfoDefault = {
+const dayInfoDefault = {
   custom: {
     text: ''
   },
@@ -187,10 +191,10 @@ export default {
 
   async asyncData({ $axios, $config, params }) {
     try {
-      const dayInfo = await $axios.$get(`/month/${params.yyyymm}/${params.yyyymm}-${params.dd}.json`)
-      return { dayInfo: Object.assign({}, dayInfoDefault, dayInfo) }
+      const dayInfoGet = await $axios.$get(`/month/${params.yyyymm}/${params.yyyymm}-${params.dd}.json`)
+      return { dayInfo: mergeDeep({}, dayInfoDefault, dayInfoGet) }
     } catch (error) {
-      return { 'dayInfo': Object.assign({}, dayInfoDefault) }
+      return { 'dayInfo': mergeDeep({}, dayInfoDefault) }
     }
   },
   data: () => ({
@@ -220,6 +224,7 @@ export default {
     loadData() {
       this.loading = true;
       download(JSON.stringify(this.dayInfo), `${getYYYYMMDD(0, `${this.$route.params.yyyymm}-${this.$route.params.dd}`)}.json`, 'text/json');
+      // this.dayInfo = mergeDeep({}, dayInfoDefault) ;
       this.loading = false;
     }
   }
