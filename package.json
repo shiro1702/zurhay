@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "buildA": "nuxt build -a",
     "generate": "nuxt generate",
     "start": "nuxt start",
     "genDateJson": "node ./apiGen",
@@ -14,13 +15,15 @@
     "babel-loader": "^8.2.2",
     "eslint": "^7.21.0",
     "generate-json-webpack-plugin": "^2.0.0",
-    "nuxt": "^2.15.2",
+    "nuxt": "^2.15.6",
     "tiptap-vuetify": "^2.24.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.14.2",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/vuetify": "^1.11.3",
     "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-html": "^3.2.2",
@@ -31,7 +34,7 @@
     "fibers": "^5.0.0",
     "gh-pages": "^3.1.0",
     "push-dir": "^0.4.1",
-    "sass": "^1.32.8",
+    "sass": "~1.32.8",
     "sass-loader": "^10.1.1",
     "write-json-webpack-plugin": "^1.1.0"
   }

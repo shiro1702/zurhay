@@ -80,32 +80,50 @@
         </div>
         <!-- <div v-if="dayInfo && dayInfo.info" v-html="dayInfo.info" >
         </div> -->
-
         <v-switch
           v-model="dayInfo.haircut.positive"
-          label="haircut positive"
           inset
-        ></v-switch>
+        >
+          <template v-slot:label>
+            <v-icon
+              small
+              :color="dayInfo.haircut.positive?'green':'red'"
+              class="mr-2"
+            >
+              mdi-content-cut
+            </v-icon>
+            <span>стрижка к чему то хорошему?</span>
+          </template>
+        </v-switch>
         <v-text-field
           v-model="dayInfo.haircut.text"
-          label="haircut"
+          label="Стрижка"
         ></v-text-field>
         <v-switch
           v-model="dayInfo.travel.positive"
-          label="travel positive"
           inset
-        ></v-switch>
+        >
+          <template v-slot:label>
+            <v-icon 
+              small
+              :color="dayInfo.travel.positive?'green':'red'"
+              class="mr-2"
+            >
+              mdi-airplane
+            </v-icon>
+            <span>поздка к чему то хорошему?</span>
+          </template>
+        </v-switch>
         <v-text-field
           v-model="dayInfo.travel.text"
-          label="travel"
+          label="Поздка"
         ></v-text-field>
-        <Editor class="mb-5" v-model="dayInfo.info"/>
+        <LazyEditor class="mb-5" v-model="dayInfo.info"/>
         <v-text-field
           v-model="dayInfo.custom.text"
-          label="Custom"
+          label="допольнительная информация"
         ></v-text-field>
         <v-btn
-          
           :loading="loading"
           :disabled="loading"
           color="primary"
@@ -125,7 +143,7 @@ import { getMoonPhase } from '@/assets/js/moon.js'
 
 import { download } from '@/assets/js/download.js'
 
-import Editor from "@/components/Editor";
+import LazyEditor from "@/components/Editor";
 
 
 let dayInfoDefault = {
@@ -164,7 +182,7 @@ export default {
   },
 
   components: {
-    Editor,
+    LazyEditor,
   },
 
   async asyncData({ $axios, $config, params }) {

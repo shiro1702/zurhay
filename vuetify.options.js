@@ -1,4 +1,4 @@
-// import colors from 'vuetify/lib/util/colors'
+import colors from 'vuetify/lib/util/colors'
 // console.log(colors);
 
 // import { VBtn } from 'vuetify/lib/components/index.js'
@@ -6,9 +6,11 @@
 // import { VBtn } from 'vuetify/lib/components/'
 
 // import { VBtn } from 'vuetify/lib'
-// import Vuetify, {
+// import {
+//   VApp,
 //   VBtn,
 // } from 'vuetify/lib'
+
 export default {
   breakpoint: {},
   icons: {},
@@ -31,11 +33,22 @@ export default {
   //     },
   //   },
   // },
-  customVariables: ['~/assets/css/variables.sass'],
-  treeShake: {
-    // components: {
-    //   VBtn, 
-    // },
+  theme: {
+    themes: {
+      light: {
+        primary: colors.indigo.darken1,
+        secondary: colors.grey.darken1,
+        accent: colors.shades.black,
+        error: colors.red.accent3,
+      },
+    },
   },
+  // customVariables: ['~/assets/css/variables.sass'],
+  // treeShake: {
+  //   components: {
+  //     VApp,
+  //     VBtn, 
+  //   },
+  // },
 
 }

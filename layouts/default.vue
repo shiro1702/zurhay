@@ -3,7 +3,7 @@
     <a-header/>
 
     <v-main>
-      <v-container>
+      <v-container class="max-container">
         <Nuxt />
       </v-container>
     </v-main>

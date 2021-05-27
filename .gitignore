@@ -5,3 +5,11 @@ node_modules
 .nuxt/router.js
 .nuxt/routes.json
 .nuxt/vuetify/options.js
+.nuxt/App.js
+.nuxt/client.js
+.nuxt/index.js
+.nuxt/router.js
+.nuxt/routes.json
+.nuxt/server.js
+.nuxt/utils.js
+.nuxt/vuetify/options.js

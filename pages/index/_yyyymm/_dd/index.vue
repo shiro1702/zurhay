@@ -3,7 +3,7 @@
     <div class="d-flex flex-column flex-md-row align-start justify-space-between">
       <v-date-picker
         :value="date"
-        class="order-last order-sm-0"
+        class="order-last order-md-0"
         color="primary lighten-1"
         locale="ru"
         elevation="4"
@@ -12,14 +12,14 @@
         @click:date="goToDate"
       ></v-date-picker>
       <div 
-        class="ml-sm-8" 
+        class="ml-md-8" 
         :style="{width:'100%'}"
         v-touch="{
           left: () =>  {$router.push(prevLink)},
           right: () => {$router.push(nextLink)}
         }"
       >
-        <div class="d-flex align-center justify-center justify-sm-space-between mb-3 mb-sm-6">
+        <div class="d-flex align-center justify-center justify-md-space-between mb-3 mb-md-6">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -104,8 +104,6 @@
               class="mb-3 mb-sm-4" >
             <v-icon
               small
-              v-bind="attrs"
-              v-on="on"
               color="primary"
               class="mr-2"
             >
@@ -118,8 +116,6 @@
               class="mb-3 mb-sm-4" >
             <v-icon
               small
-              v-bind="attrs"
-              v-on="on"
               :color="dayInfo.travel.positive?'green':'red'"
               class="mr-2"
             >
@@ -132,8 +128,6 @@
               class="mb-3 mb-sm-4" >
             <v-icon
               small
-              v-bind="attrs"
-              v-on="on"
               :color="dayInfo.haircut.positive?'green':'red'"
               class="mr-2"
             >

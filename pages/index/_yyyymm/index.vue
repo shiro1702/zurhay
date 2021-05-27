@@ -87,7 +87,7 @@
       
       <template v-if="$vuetify.breakpoint.name != 'xs'" v-slot:day="{ date }">
         <div class="d-flex flex-row justify-end pb-2">
-            <template v-if="tracked[date]"> 
+            <template v-if="tracked && tracked[date]"> 
               <v-tooltip max-width="200" bottom v-if="tracked[date].custom && tracked[date].custom.text">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
@@ -132,7 +132,7 @@
               </v-tooltip>
             </template>
             <template v-else>
-              <v-tooltip bottom v-if="!tracked[date]">
+              <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     small
@@ -175,12 +175,12 @@ export default {
   },
 
   async asyncData({ $axios, $config, params }) {
-    try {
-      const tracked = await $axios.$get(`/month/${params.yyyymm}.json`)
-      return { tracked, 'noInfo': false }
-    } catch (error) {
-      return { 'tracked': {}, 'noInfo': true }
-    }
+    return $axios.$get(`/month/${params.yyyymm}.json`)
+      .then(
+        (data)=>({tracked: data, 'noInfo': false })
+        , 
+        (error)=>({ tracked: null, 'noInfo': false })
+      );
   },
   data: () => ({
     todayLink: '/'+getYYYYMM(),

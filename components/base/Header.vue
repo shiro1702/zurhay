@@ -4,7 +4,7 @@
     color="white"
   >
     <!-- flat -->
-    <v-container class="pa-0 fill-height">
+    <v-container class="pa-0 fill-height max-container ">
       <v-avatar
         class="mr-10"
         color="grey darken-1"

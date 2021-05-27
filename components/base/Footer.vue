@@ -5,7 +5,7 @@
   >
 
 
-  <v-container class="py-0 fill-height">
+  <v-container class="py-0 fill-height max-container">
     <v-row
       align="center"
       justify="center"

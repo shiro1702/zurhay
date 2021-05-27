@@ -1,12 +1,16 @@
 // import webpack from 'webpack'
 
-import colors from 'vuetify/lib/util/colors'
+// import colors from 'vuetify/lib/util/colors'
 
 import axios from 'axios'
 
-import WriteJsonPlugin from 'write-json-webpack-plugin';
+// import WriteJsonPlugin from 'write-json-webpack-plugin';
 
 // import { VBtn } from 'vuetify/lib';
+// import Vuetify, {
+//   VApp,
+//   VBtn,
+// } from 'vuetify/lib'
 
 export default {
 
@@ -37,14 +41,14 @@ export default {
       let months = ['2021-05'];
       let routesFinal = [];
       let counter = 0;
-      console.log('months', months);
+      // console.log('months', months);
       months.forEach(month => {
-        console.log('month', month);
-        console.log('url', 'http://localhost:3000/month/'+month+'.json');
+        // console.log('month', month);
+        // console.log('url', 'http://localhost:3000/month/'+month+'.json');
         axios.get('http://localhost:3000/month/'+month+'.json')
           .then(res => {
             counter++;
-            console.log('res', res.data);
+            // console.log('res', res.data);
             routesFinal.push('/' + month );
             for (let date in res.data) {
               let day = date.split('-')[date.split('-').length - 1];
@@ -52,6 +56,7 @@ export default {
               routesFinal.push('/' + month + '/' + day + '/edit');
             }
             if (counter == months.length) {
+              console.log(routesFinal);
               callback(null, routesFinal)
             }
           })
@@ -90,85 +95,44 @@ export default {
 
   plugins: ['~/plugins/TiptapVuetify'],
   build: {
-    plugins: [
-      // new GenerateJsonPlugin(
-      //   'my-file.json',
-      //   { foo: 'bar', one: 'two' },
-      // )
-      new WriteJsonPlugin({
-        object: { foo: 'bar', one: 'two' },
-        // path: './static',
-        // default output is timestamp.json
-        filename: 'my-file.json',
-      }),
-    ],
     transpile: ['vuetify/lib', "tiptap-vuetify"],
-    // extend(config, ctx) {
-    //   config.module.rules.push({
-    //     test: /\.(ogg|mp3|wav|mpe?g)$/i,
-    //     loader: 'file-loader',
-    //     options: {
-    //       name: '[path][name].[ext]'
-    //     }
-    //   })
-    // }
   },
   buildModules: [
-    
+    '@nuxtjs/vuetify', 
     // Simple usage
     // '@nuxtjs/vuetify',
 
     // With options
-    ['@nuxtjs/vuetify', 
-    { /* module options */
-      customVariables: {
-        customVariables: ['~/assets/css/variables.sass']
-      },
+    // ['@nuxtjs/vuetify', 
+    // { /* module options */
+    //   customVariables: {
+    //     customVariables: ['~/assets/css/variables.sass']
+    //   },
       
-      theme: {
-        themes: {
-          light: {
-            primary: colors.indigo.darken1,
-            secondary: colors.grey.darken1,
-            accent: colors.shades.black,
-            error: colors.red.accent3,
-          },
-        },
-      },
-      // treeShake: {
-      //   components: {
-      //     VBtn, 
-      //   },
-      // },
-    }]
+    //   theme: {
+    //     themes: {
+    //       light: {
+    //         primary: colors.indigo.darken1,
+    //         secondary: colors.grey.darken1,
+    //         accent: colors.shades.black,
+    //         error: colors.red.accent3,
+    //       },
+    //     },
+    //   },
+    //   treeShake: {
+    //     components: {
+    //       VApp,
+    //       VBtn, 
+    //     },
+    //   },
+    // }
+  // ]
   ],
-
+  vuetify: {
+    optionsPath: './vuetify.options.js',
+  },
   /*
    ** Modules - https://nuxtjs.org/docs/2.x/directory-structure/modules
    */
   modules: ['@nuxtjs/axios'],
-  // vuetify: {
-  //   optionsPath: './vuetify.options.js',
-  //   theme: {
-  //     themes: {
-  //       // light: {
-  //       //   primary: '#3f51b5',
-  //       //   secondary: '#b0bec5',
-  //       //   accent: '#8c9eff',
-  //       //   error: '#b71c1c',
-  //       // },
-  //       light: {
-  //         primary: colors.green.darken1,
-  //         secondary: colors.grey.darken1,
-  //         accent: colors.shades.black,
-  //         error: colors.red.accent3,
-  //       },
-  //     },
-  //   },
-  //   treeShake: {
-  //     // components: {
-  //     //   VBtn, 
-  //     // },
-  //   },
-  // },
 }
