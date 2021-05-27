@@ -38,7 +38,7 @@ export default {
       ] // ignore changes applied on this files
     },
     routes(callback) {
-      let months = ['2021-05'];
+      let months = ['2021-05', '2021-06'];
       let routesFinal = [];
       let counter = 0;
       // console.log('months', months);
