@@ -134,5 +134,17 @@ export default {
   /*
    ** Modules - https://nuxtjs.org/docs/2.x/directory-structure/modules
    */
-  modules: ['@nuxtjs/axios'],
+  modules: ['@nuxtjs/axios', 
+    [
+      '@nuxtjs/yandex-metrika',
+      {
+        id: '79784347',
+        webvisor: true,
+        // clickmap:true,
+        // useCDN:false,
+        // trackLinks:true,
+        // accurateTrackBounce:true,
+      }
+    ],
+  ],
 }
