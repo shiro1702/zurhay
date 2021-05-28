@@ -79,7 +79,7 @@ export default {
         let d = new Date(`${this.$route.params.yyyymm}-${this.$route.params.dd}`).toLocaleString('ru', options)
         return 'на ' + d
       }
-      return ''
+      return 'Зурхай - буддийский лунный календар'
     },
   },
   

@@ -33,8 +33,14 @@ export default {
   },
 
   head: {
+    title: `Зурхай - буддийский лунный календар`,
     meta: [
         { name: 'yandex-verification', content: '0993204c71aaf55b' },
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Зурхай - лунный календарь благоприятных дней для стрижки и путешествий'
+        }
     ],
   }
 }
