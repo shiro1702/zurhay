@@ -30,6 +30,12 @@ export default {
   components: {
     'a-header': Header,
     'a-footer': Footer
+  },
+
+  head: {
+    meta: [
+        { name: 'yandex-verification', content: '0993204c71aaf55b' },
+    ],
   }
 }
 </script>
