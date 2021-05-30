@@ -148,7 +148,7 @@
 </template>
 
 <script>
-import { getYYYYMMDD } from '@/assets/js/getDate.js'
+import { getYYYYMM, getYYYYMMDD } from '@/assets/js/getDate.js'
 import { getMoonPhase } from '@/assets/js/moon.js'
 
 export default {
@@ -175,46 +175,37 @@ export default {
 
   async asyncData({ $axios, $config, params }) {
     try {
-      const dayInfo = await $axios.$get(`/month/${params.yyyymm}/${params.yyyymm}-${params.dd}.json`)
+      let date =  new Date();
+      console.log('date', `/month/${getYYYYMM(0, date)}/${getYYYYMMDD(0, date )}.json`);
+      const dayInfo = await $axios.$get(`/month/${getYYYYMM(0, date)}/${getYYYYMMDD(0, date )}.json`)
+      console.log('dayInfo', dayInfo);
       return { dayInfo, 'noInfo': false }
     } catch (error) {
+      console.log('error', error);
       return { 'dayInfo': {}, 'noInfo': true }
     }
   },
   data: () => ({
     // date: null,
   }),
-  // created(){
-  //   this.date =`${this.$route.params.yyyymm}-${this.$route.params.dd}`;
-  // },
-  // beforeRouteUpdate(to, from, next){
-  //   this.date =`${this.$route.params.yyyymm}-${this.$route.params.dd}`;
-  //   next();
-  // },
   computed: {
     moon(){
       return getMoonPhase(new Date(this.date) );
     },
     date(){
-        return `${this.$route.params.yyyymm}-${this.$route.params.dd}`;
+      return `${getYYYYMMDD()}`;
     },
     prevLink(){
-      return '/'+getYYYYMMDD(-1, `${this.$route.params.yyyymm}-${this.$route.params.dd}`,'-', '/');
+      return '/'+getYYYYMMDD(-1, this.date, '-', '/');
     },
     nextLink(){
-      return '/'+getYYYYMMDD(1, `${this.$route.params.yyyymm}-${this.$route.params.dd}`,'-', '/');
+      return '/'+getYYYYMMDD(1, this.date, '-', '/');
     },
     canonicalLink(){
       if (this.noInfo) {
         return [{
           rel: 'canonical',
           href: '/'
-        }]
-      }
-      if (`${this.$route.params.yyyymm}-${this.$route.params.dd}` == getYYYYMMDD()) {
-        return [{
-          rel: 'canonical',
-          href: '/today'
         }]
       }
       return [];

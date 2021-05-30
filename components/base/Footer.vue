@@ -3,8 +3,6 @@
     dark
     color="primary lighten-1"
   >
-
-
   <v-container class="py-0 fill-height max-container">
     <v-row
       align="center"
@@ -21,6 +19,9 @@
         class="mx-3"
         dark
         icon
+        tag="a"
+        :href="link.href"
+        target="_blank"
       >
         <v-icon size="24px">
           {{ link.icon }}
@@ -37,15 +38,15 @@
       socialLinks: [
         {
           icon: 'mdi-vk',
-          linl: '/'
+          href: 'https://vk.com/ars.bar.developer'
         },
         {
           icon: 'mdi-instagram',
-          linl: '/'
+          href: 'https://www.instagram.com/ars.bar.dev/'
         },
         {
           icon: 'mdi-twitter',
-          linl: '/'
+          href: 'https://twitter.com/arssaybar'
         }
       ],
     }),

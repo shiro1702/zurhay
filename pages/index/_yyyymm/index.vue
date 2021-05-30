@@ -183,7 +183,8 @@ export default {
       );
   },
   data: () => ({
-    todayLink: '/'+getYYYYMM(),
+    // todayLink: '/'+getYYYYMM(),
+    todayLink: '/today'
   }),
   computed: {
     date(){

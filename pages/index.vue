@@ -53,6 +53,9 @@ export default {
         let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
         return 'на месяц ' + d;
       }
+      if ( this.$route.name === 'index-today' ) {
+        return 'на сегодня';
+      }
       if ( this.$route.name === 'index-yyyymm-dd' || this.$route.name === 'index-yyyymm-dd-edit' ) {
         let options = {year: 'numeric', month: 'long', day: 'numeric'};
         let d = new Date(`${this.$route.params.yyyymm}-${this.$route.params.dd}`).toLocaleString('ru', options)
@@ -64,12 +67,15 @@ export default {
       if ( this.$route.name === 'index') {
         let options = {year: 'numeric', month: 'long'};
         let d = new Date(`${getYYYYMM()}-1`).toLocaleString('ru', options)
-        return 'Зурхай на месяц ' + d + 'лунный календарь благоприятных дней для стрижки и путешествий';
+        return 'Зурхай на месяц ' + d + ' лунный календарь благоприятных дней для стрижки и путешествий';
       }
       if ( this.$route.name === 'index-yyyymm') {
         let options = {year: 'numeric', month: 'long'};
         let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
-        return 'Зурхай на месяц ' + d + 'лунный календарь благоприятных дней для стрижки и путешествий';
+        return 'Зурхай на месяц ' + d + ' лунный календарь благоприятных дней для стрижки и путешествий';
+      }
+      if ( this.$route.name === 'index-today' ) {
+        return 'Зурхай на сегодня - можно ли стичься';
       }
       if ( this.$route.name === 'index-yyyymm-dd' || this.$route.name === 'index-yyyymm-dd-edit' ) {
         let d = '';
@@ -93,6 +99,9 @@ export default {
         let options = {year: 'numeric', month: 'long'};
         let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
         return 'на ' + d
+      }
+      if ( this.$route.name === 'index-today' ) {
+        return 'на сегодня';
       }
       if ( this.$route.name === 'index-yyyymm-dd' || this.$route.name === 'index-yyyymm-dd-edit' ) {
         let options = {year: 'numeric', month: 'long', day: 'numeric'};
