@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="title text-h5 text-sm-h4 text-md-h3 mb-4 mb-sm-8">Зурхай {{title}}</h1>
-    <NuxtChild  />
+    <NuxtChild />
   </div>
 </template>
 
@@ -27,17 +27,27 @@ export default {
   // async asyncData({ params, redirect }) {
   //   redirect('/2021-03')
   // },
-  middleware({ params, redirect }) {
-    if (!params.yyyymm) {
-      return redirect('/'+getYYYYMM())
-    }
-  },
+  // middleware({ route, params, redirect }) {
+
+  //   console.log('middleware', route.name);
+  //   console.log('params', params);
+  //   if (!params.yyyymm) {
+  //     params.yyyymm = getYYYYMM()
+  //     // return redirect('/'+getYYYYMM())
+  //   }
+  //   return;
+  // },
   data: () => ({
-    focus: '',
-    todayLink: '/'+getYYYYMM(),
+    // focus: '',
+    // todayLink: '/'+getYYYYMM(),
   }),
   computed: {
     pageTitle(){
+      if ( this.$route.name === 'index') {
+        let options = {year: 'numeric', month: 'long'};
+        let d = new Date(`${getYYYYMM()}-1`).toLocaleString('ru', options)
+        return 'на месяц ' + d;
+      }
       if ( this.$route.name === 'index-yyyymm') {
         let options = {year: 'numeric', month: 'long'};
         let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
@@ -51,6 +61,11 @@ export default {
       return ''
     },
     pageDesc(){
+      if ( this.$route.name === 'index') {
+        let options = {year: 'numeric', month: 'long'};
+        let d = new Date(`${getYYYYMM()}-1`).toLocaleString('ru', options)
+        return 'Зурхай на месяц ' + d + 'лунный календарь благоприятных дней для стрижки и путешествий';
+      }
       if ( this.$route.name === 'index-yyyymm') {
         let options = {year: 'numeric', month: 'long'};
         let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
@@ -69,6 +84,11 @@ export default {
       return 'Зурхай - лунный календарь благоприятных дней для стрижки и путешествий';
     },
     title(){
+      if ( this.$route.name === 'index') {
+        let options = {year: 'numeric', month: 'long'};
+        let d = new Date(`${getYYYYMM()}-1`).toLocaleString('ru', options)
+        return 'на ' + d
+      }
       if ( this.$route.name === 'index-yyyymm') {
         let options = {year: 'numeric', month: 'long'};
         let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
@@ -79,7 +99,7 @@ export default {
         let d = new Date(`${this.$route.params.yyyymm}-${this.$route.params.dd}`).toLocaleString('ru', options)
         return 'на ' + d
       }
-      return 'Зурхай - буддийский лунный календар'
+      return ' - буддийский лунный календар'
     },
   },
   

@@ -173,8 +173,11 @@ export default {
       ]
     }
   },
-
   async asyncData({ $axios, $config, params }) {
+
+    if (!params.yyyymm) {
+      params.yyyymm = getYYYYMM();
+    }
     return $axios.$get(`/month/${params.yyyymm}.json`)
       .then(
         (data)=>({tracked: data, 'noInfo': false })
@@ -186,9 +189,6 @@ export default {
     todayLink: '/'+getYYYYMM(),
   }),
   computed: {
-    date(){
-      return `${this.$route.params.yyyymm}-1`;
-    },
     prevLink(){
       return '/'+getYYYYMM(-1, `${this.$route.params.yyyymm}-1`);
     },
@@ -196,14 +196,14 @@ export default {
       return '/'+getYYYYMM(1, `${this.$route.params.yyyymm}-1`);
     },
     canonicalLink(){
-      if (this.$route.params.yyyymm === getYYYYMM() || this.noInfo) {
+      if (this.noInfo) {
         return [{
           rel: 'canonical',
           href: '/'
         }]
       }
-      return [];
-    }
+        return [];
+    },
   },
   methods: {
     getMoonPhase(date){
@@ -215,6 +215,11 @@ export default {
       if ([1, 19, 22].includes(parseInt(day, 10))) return ['red', '#00f']
       return false
     },
+  },
+  beforeCreate(){
+    if (!this.$route.params.yyyymm) {
+      this.$route.params.yyyymm = getYYYYMM();
+    }
   },
 }
 </script>
