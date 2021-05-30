@@ -99,9 +99,7 @@ export default {
   },
   buildModules: [
     '@nuxtjs/vuetify', 
-    ['@nuxtjs/google-analytics', {
-      id: 'G-5RSRDDJ91Q'
-    }]
+    '@nuxtjs/google-analytics'
     // Simple usage
     // '@nuxtjs/vuetify',
 
@@ -131,6 +129,11 @@ export default {
     // }
   // ]
   ],
+
+  googleAnalytics: {
+    // Options
+    id: 'G-5RSRDDJ91Q'
+  },
   vuetify: {
     optionsPath: './vuetify.options.js',
   },
