@@ -5,11 +5,13 @@
   >
     <!-- flat -->
     <v-container class="pa-0 fill-height max-container ">
-      <v-avatar
-        class="mr-10"
-        color="grey darken-1"
-        size="32"
-      ></v-avatar>
+      <NuxtLink to="/">
+        <v-avatar
+          class="mr-10"
+          color="grey darken-1"
+          size="32"
+        ></v-avatar>
+      </NuxtLink>
 
       <v-spacer></v-spacer>
       <v-btn
@@ -76,6 +78,10 @@ export default {
         title: 'Календарь',
         name: 'index-yyyymm',
         params: {yyyymm: getYYYYMM()}
+      },
+      {
+        title: 'На сегодня',
+        name: 'index-today'
       },
       {
         title: 'О проекте',

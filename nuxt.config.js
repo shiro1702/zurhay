@@ -99,6 +99,9 @@ export default {
   },
   buildModules: [
     '@nuxtjs/vuetify', 
+    ['@nuxtjs/google-analytics', {
+      id: 'G-5RSRDDJ91Q'
+    }]
     // Simple usage
     // '@nuxtjs/vuetify',
 
