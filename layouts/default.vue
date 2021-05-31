@@ -7,18 +7,6 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <div class="a-alert">
-      <v-alert
-        border="left"
-        dismissible
-        colored-border
-        color="primary accent-4"
-        elevation="4"
-      >
-      <p>Сейчас сайт наполнен частично со стороних ресурсов.
-      Ведеться поиск буддисткого астролога. </p>
-      </v-alert>
-    </div>
     <a-footer/>
   </v-app>
 </template>
