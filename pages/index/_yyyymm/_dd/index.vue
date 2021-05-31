@@ -121,6 +121,7 @@
             >
               mdi-airplane
             </v-icon>
+            <span class="d-none">Путешествие - </span>
             <span>{{dayInfo.travel.text}}</span>
           </div>
           <div 
@@ -133,6 +134,7 @@
             >
               mdi-content-cut
             </v-icon>
+            <span class="d-none">Стрижка волос - </span>
             <span>{{dayInfo.haircut.text}}</span>
           </div>
           <div v-if="dayInfo.info" v-html="dayInfo.info" >
@@ -152,6 +154,7 @@ import { getYYYYMMDD } from '@/assets/js/getDate.js'
 import { getMoonPhase } from '@/assets/js/moon.js'
 
 export default {
+  scrollToTop: true,
   head(){
     return {
       link: [
@@ -167,11 +170,11 @@ export default {
       ]
     }
   },
-  middleware({ params, redirect }) {
-    // if (!params.yyyymm) {
-    //   return redirect('/'+getYYYYMM())
-    // }
-  },
+  // middleware({ params, redirect }) {
+  //   // if (!params.yyyymm) {
+  //   //   return redirect('/'+getYYYYMM())
+  //   // }
+  // },
 
   async asyncData({ $axios, $config, params }) {
     try {

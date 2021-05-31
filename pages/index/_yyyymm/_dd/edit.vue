@@ -111,12 +111,12 @@
             >
               mdi-airplane
             </v-icon>
-            <span>поздка к чему то хорошему?</span>
+            <span>Отправляться в дорогу к чему то хорошему?</span>
           </template>
         </v-switch>
         <v-text-field
           v-model="dayInfo.travel.text"
-          label="Поздка"
+          label="Отправляться в дорогу"
         ></v-text-field>
         <LazyEditor class="mb-5" v-model="dayInfo.info"/>
         <v-text-field

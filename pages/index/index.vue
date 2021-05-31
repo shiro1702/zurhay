@@ -102,7 +102,7 @@
                 </template>
                 <span>{{tracked[date].custom.text}}</span>
               </v-tooltip>
-              <v-tooltip max-width="200" bottom v-if="tracked[date].travel && tracked[date].travel.positive">
+              <v-tooltip max-width="200" bottom v-if="tracked[date].travel && tracked[date].travel.text">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     small
@@ -113,10 +113,11 @@
                   >
                     mdi-airplane
                   </v-icon>
+                  <span class="d-none">Путешествие - {{tracked[date].travel.text}}</span>
                 </template>
                 <span>{{tracked[date].travel.text}}</span>
               </v-tooltip>
-              <v-tooltip max-width="200" bottom v-if="tracked[date].haircut" >
+              <v-tooltip max-width="200" bottom v-if="tracked[date].haircut && tracked[date].haircut.text" >
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     small
@@ -127,6 +128,7 @@
                   >
                     mdi-content-cut
                   </v-icon>
+                  <span class="d-none">Стрижка волос - {{tracked[date].haircut.text}}</span>
                 </template>
                 <span>{{tracked[date].haircut.text}}</span>
               </v-tooltip>

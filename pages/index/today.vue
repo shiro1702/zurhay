@@ -121,6 +121,7 @@
             >
               mdi-airplane
             </v-icon>
+            <span class="d-none">Путешествие - </span>
             <span>{{dayInfo.travel.text}}</span>
           </div>
           <div 
@@ -133,6 +134,7 @@
             >
               mdi-content-cut
             </v-icon>
+            <span class="d-none">Стрижка волос - </span>
             <span>{{dayInfo.haircut.text}}</span>
           </div>
           <div v-if="dayInfo.info" v-html="dayInfo.info" >
@@ -176,12 +178,12 @@ export default {
   async asyncData({ $axios, $config, params }) {
     try {
       let date =  new Date();
-      console.log('date', `/month/${getYYYYMM(0, date)}/${getYYYYMMDD(0, date )}.json`);
+      // console.log('date', `/month/${getYYYYMM(0, date)}/${getYYYYMMDD(0, date )}.json`);
       const dayInfo = await $axios.$get(`/month/${getYYYYMM(0, date)}/${getYYYYMMDD(0, date )}.json`)
-      console.log('dayInfo', dayInfo);
+      // console.log('dayInfo', dayInfo);
       return { dayInfo, 'noInfo': false }
     } catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
       return { 'dayInfo': {}, 'noInfo': true }
     }
   },
