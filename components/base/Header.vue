@@ -5,13 +5,34 @@
   >
     <!-- flat -->
     <v-container class="pa-0 fill-height max-container ">
-      <NuxtLink to="/">
-        <v-avatar
-          class="mr-10"
-          color="grey darken-1"
-          size="32"
-        ></v-avatar>
-      </NuxtLink>
+      <v-btn
+        to="/"
+        elevation="2"
+        nuxt
+        fab
+        small
+      >
+        <svg width="32" height="32" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="20" stroke="#3A4CA5" stroke-width="10"/>
+          <circle cx="100" cy="100" r="70" stroke="#3A4CA5" stroke-width="10"/>
+          <line x1="100" y1="26" x2="100" y2="77" stroke="#3A4CA5" stroke-width="10" stroke-linejoin="round"/>
+          <line x1="153.536" y1="47.5355" x2="117.536" y2="83.5355" stroke="#3A4CA5" stroke-width="10" stroke-linejoin="round"/>
+          <line x1="173" y1="99" x2="123" y2="99" stroke="#3A4CA5" stroke-width="10" stroke-linejoin="round"/>
+          <line x1="153.464" y1="151.536" x2="117.464" y2="115.536" stroke="#3A4CA5" stroke-width="10" stroke-linejoin="round"/>
+          <line x1="100" y1="173" x2="100" y2="123" stroke="#3A4CA5" stroke-width="10" stroke-linejoin="round"/>
+          <line x1="49.4645" y1="149.464" x2="85.4645" y2="113.464" stroke="#3A4CA5" stroke-width="10" stroke-linejoin="round"/>
+          <line x1="28" y1="99" x2="78" y2="99" stroke="#3A4CA5" stroke-width="10" stroke-linejoin="round"/>
+          <line x1="50.5355" y1="49.4645" x2="85.5355" y2="84.4645" stroke="#3A4CA5" stroke-width="10" stroke-linejoin="round"/>
+          <circle cx="100" cy="25" r="7.5" stroke="#3A4CA5" stroke-width="5"/>
+          <circle cx="153" cy="47" r="2.5" stroke="#3A4CA5" stroke-width="5"/>
+          <circle cx="153" cy="153" r="2.5" stroke="#3A4CA5" stroke-width="5"/>
+          <circle cx="47" cy="47" r="2.5" stroke="#3A4CA5" stroke-width="5"/>
+          <circle cx="47" cy="153" r="2.5" stroke="#3A4CA5" stroke-width="5"/>
+          <circle cx="175" cy="100" r="7.5" stroke="#3A4CA5" stroke-width="5"/>
+          <circle cx="100" cy="175" r="7.5" stroke="#3A4CA5" stroke-width="5"/>
+          <circle cx="25" cy="100" r="7.5" stroke="#3A4CA5" stroke-width="5"/>
+        </svg>
+      </v-btn>
 
       <v-spacer></v-spacer>
       <v-btn

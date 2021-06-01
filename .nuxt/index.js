@@ -13,6 +13,9 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 /* Plugins */
 
 import nuxt_plugin_plugin_4eb56250 from 'nuxt_plugin_plugin_4eb56250' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_axios_30cff674 from 'nuxt_plugin_axios_30cff674' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_googleanalytics_0d009132 from 'nuxt_plugin_googleanalytics_0d009132' // Source: ./google-analytics.js (mode: 'client')
+import nuxt_plugin_TiptapVuetify_5e6e5270 from 'nuxt_plugin_TiptapVuetify_5e6e5270' // Source: ../plugins/TiptapVuetify (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -41,7 +44,11 @@ Vue.component(Nuxt.name, Nuxt)
 
 Object.defineProperty(Vue.prototype, '$nuxt', {
   get() {
-    return this.$root.$options.$nuxt
+    const globalNuxt = this.$root.$options.$nuxt
+    if (process.client && !globalNuxt && typeof window !== 'undefined') {
+      return window.$nuxt
+    }
+    return globalNuxt
   },
   configurable: true
 })
@@ -58,7 +65,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"htmlAttrs":{"lang":"ru"},"title":"Зурхай","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxt.js project"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
+    head: {"htmlAttrs":{"lang":"ru"},"title":"Зурхай - буддийский лунный календар","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Зурхай - лунный календарь благоприятных дней для стрижки и путешествий"},{"name":"yandex-verification","content":"0993204c71aaf55b"},{"name":"google-site-verification","content":"CB6SgDkCNtB4-Ii1oZ_q_juNumcUbTatzCmFKoicG4U"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Fimg\u002Ffavicon\u002Ffavicon.ico"},{"rel":"apple-touch-icon","sizes":"180x180","href":"\u002Fimg\u002Ffavicon\u002Fapple-touch-icon.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"32x32","href":"\u002Fimg\u002Ffavicon\u002Ffavicon-32x32.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"16x16","href":"\u002Fimg\u002Ffavicon\u002Ffavicon-16x16.png"},{"rel":"manifest","type":"image\u002Fx-icon","href":"\u002Fimg\u002Ffavicon\u002Fsite.webmanifest"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
 
     router,
     nuxt: {
@@ -176,6 +183,18 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_plugin_4eb56250(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_axios_30cff674 === 'function') {
+    await nuxt_plugin_axios_30cff674(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_googleanalytics_0d009132 === 'function') {
+    await nuxt_plugin_googleanalytics_0d009132(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_TiptapVuetify_5e6e5270 === 'function') {
+    await nuxt_plugin_TiptapVuetify_5e6e5270(app.context, inject)
+  }
+
   // Lock enablePreview in context
   if (process.static && process.client) {
     app.context.enablePreview = function () {
@@ -183,26 +202,26 @@ async function createApp(ssrContext, config = {}) {
     }
   }
 
-  // If server-side, wait for async component to be resolved first
-  if (process.server && ssrContext && ssrContext.url) {
-    await new Promise((resolve, reject) => {
-      router.push(ssrContext.url, resolve, (err) => {
-        // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
-        if (!err._isRouter) return reject(err)
-        if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()
+  // Wait for async component to be resolved first
+  await new Promise((resolve, reject) => {
+    router.replace(app.context.route.fullPath, resolve, (err) => {
+      // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
+      if (!err._isRouter) return reject(err)
+      if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()
 
-        // navigated to a different route in router guard
-        const unregister = router.afterEach(async (to, from) => {
+      // navigated to a different route in router guard
+      const unregister = router.afterEach(async (to, from) => {
+        if (process.server && ssrContext && ssrContext.url) {
           ssrContext.url = to.fullPath
-          app.context.route = await getRouteData(to)
-          app.context.params = to.params || {}
-          app.context.query = to.query || {}
-          unregister()
-          resolve()
-        })
+        }
+        app.context.route = await getRouteData(to)
+        app.context.params = to.params || {}
+        app.context.query = to.query || {}
+        unregister()
+        resolve()
       })
     })
-  }
+  })
 
   return {
     app,

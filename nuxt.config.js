@@ -82,14 +82,20 @@ export default {
     htmlAttrs: {
       lang: 'ru'
     },
-    title: 'Зурхай',
+    title: `Зурхай - буддийский лунный календар`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Зурхай - лунный календарь благоприятных дней для стрижки и путешествий' },
+      { name: 'yandex-verification', content: '0993204c71aaf55b' },
+      { name: 'google-site-verification', content: 'CB6SgDkCNtB4-Ii1oZ_q_juNumcUbTatzCmFKoicG4U' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/img/favicon/favicon.ico' },
+      { rel: 'apple-touch-icon', sizes:'180x180', href: '/img/favicon/apple-touch-icon.png' },
+      { rel: 'icon', type: 'image/png', sizes:'32x32', href: '/img/favicon/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes:'16x16', href: '/img/favicon/favicon-16x16.png' },
+      { rel: 'manifest', type: 'image/x-icon', href: '/img/favicon/site.webmanifest' }
     ]
   },
 

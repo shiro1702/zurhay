@@ -22,7 +22,7 @@ var files = require('./files.js');
 // console.log('$npm_config_', npm_config_name);
 // var dateYYYYMM = getDate.getYYYYMM();
 // var dateYYYYMM = getDate.getYYYYMM(0, '2021-06-01');
-var dateYYYYMM = '2021-05';
+var dateYYYYMM = '2021-06';
 // console.log(dateYYYYMM);
 var data = {};
 files.readFiles(`./static/month/${dateYYYYMM}/`, function(filename, content) {

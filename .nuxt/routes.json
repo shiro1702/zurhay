@@ -7,11 +7,31 @@
     "_name": "_f0ea3830"
   },
   {
-    "name": "index",
+    "name": "plans",
+    "path": "/plans",
+    "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/plans/index.vue",
+    "chunkName": "pages/plans/index",
+    "_name": "_6fb52af6"
+  },
+  {
     "path": "/",
     "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index.vue",
     "chunkName": "pages/index",
     "children": [
+      {
+        "name": "index",
+        "path": "",
+        "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index/index.vue",
+        "chunkName": "pages/index/index",
+        "_name": "_f4ba5226"
+      },
+      {
+        "name": "index-today",
+        "path": "today",
+        "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index/today.vue",
+        "chunkName": "pages/index/today",
+        "_name": "_45af7ddc"
+      },
       {
         "name": "index-yyyymm",
         "path": ":yyyymm",
@@ -21,10 +41,17 @@
       },
       {
         "name": "index-yyyymm-dd",
-        "path": ":yyyymm?/:dd",
+        "path": ":yyyymm/:dd",
         "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index/_yyyymm/_dd/index.vue",
         "chunkName": "pages/index/_yyyymm/_dd/index",
         "_name": "_4eddf06d"
+      },
+      {
+        "name": "index-yyyymm-dd-edit",
+        "path": ":yyyymm/:dd/edit",
+        "component": "/Users/arsalanbaranzaev/Desktop/projects/zurhay/pages/index/_yyyymm/_dd/edit.vue",
+        "chunkName": "pages/index/_yyyymm/_dd/edit",
+        "_name": "_a4501d82"
       }
     ],
     "_name": "_3965302c"
