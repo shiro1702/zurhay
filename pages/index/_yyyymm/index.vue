@@ -85,17 +85,18 @@
         </NuxtLink>
       </template>
       
-      <template v-if="$vuetify.breakpoint.name != 'xs'" v-slot:day="{ date }">
+      <template v-slot:day="{ date }">
         <div class="d-flex flex-row justify-end pb-2">
             <template v-if="tracked && tracked[date]"> 
               <v-tooltip max-width="200" bottom v-if="tracked[date].custom && tracked[date].custom.text">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
-                    small
+                    :x-small="$vuetify.breakpoint.name == 'xs'"
+                    :small="$vuetify.breakpoint.name != 'xs'"
                     v-bind="attrs"
                     v-on="on"
                     color="primary"
-                    class="mr-2"
+                    class="mr-1 mr-sm-2"
                   >
                     mdi-calendar
                   </v-icon>
@@ -105,11 +106,12 @@
               <v-tooltip max-width="200" bottom v-if="tracked[date].travel && tracked[date].travel.text">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
-                    small
+                    :x-small="$vuetify.breakpoint.name == 'xs'"
+                    :small="$vuetify.breakpoint.name != 'xs'"
                     v-bind="attrs"
                     v-on="on"
                     :color="tracked[date].travel.positive?'green':'red'"
-                    class="mr-2"
+                    class="mr-1 mr-sm-2"
                   >
                     mdi-airplane
                   </v-icon>
@@ -120,11 +122,12 @@
               <v-tooltip max-width="200" bottom v-if="tracked[date].haircut && tracked[date].haircut.text" >
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
-                    small
+                    :x-small="$vuetify.breakpoint.name == 'xs'"
+                    :small="$vuetify.breakpoint.name != 'xs'"
                     v-bind="attrs"
                     v-on="on"
                     :color="tracked[date].haircut.positive?'green':'red'"
-                    class="mr-2"
+                    class="mr-1 mr-sm-2"
                   >
                     mdi-content-cut
                   </v-icon>
@@ -137,10 +140,11 @@
               <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
-                    small
+                    :x-small="$vuetify.breakpoint.name == 'xs'"
+                    :small="$vuetify.breakpoint.name != 'xs'"
                     v-bind="attrs"
                     v-on="on"
-                    class="mr-2"
+                    class="mr-1 mr-sm-2"
                   >
                     mdi-information-outline
                   </v-icon>
