@@ -31,7 +31,7 @@
                 class="mr-0 mr-sm-4"
                 color="grey darken-2"
                 nuxt
-                :to="`/${$route.params.yyyymm}`"
+                :to="`/`"
               >
                 <v-icon small>
                   mdi-calendar
