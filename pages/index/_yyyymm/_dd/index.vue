@@ -2,14 +2,13 @@
   <div class="day-page">
     <div class="d-flex flex-column flex-md-row align-start justify-space-between">
       <v-date-picker
-        :value="date"
+        v-model="date"
         class="order-last order-md-0"
         color="primary lighten-1"
         locale="ru"
         elevation="4"
-        no-title
         :first-day-of-week="1"
-        @click:date="goToDate"
+        :full-width="mount && $vuetify.breakpoint.name == 'xs'"
       ></v-date-picker>
       <div 
         class="ml-md-8" 
@@ -19,7 +18,7 @@
           right: () => {$router.push(nextLink)}
         }"
       >
-        <div class="d-flex align-center justify-center justify-md-space-between mb-3 mb-md-6">
+        <div class="d-flex align-center justify-md-space-between mb-3 mb-md-6">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -177,29 +176,31 @@ export default {
   // },
 
   async asyncData({ $axios, $config, params }) {
+    let dayInfo = {};
     try {
-      const dayInfo = await $axios.$get(`/month/${params.yyyymm}/${params.yyyymm}-${params.dd}.json`)
+      dayInfo = await $axios.$get(`/month/${params.yyyymm}/${params.yyyymm}-${params.dd}.json`)
       return { dayInfo, 'noInfo': false }
     } catch (error) {
-      return { 'dayInfo': {}, 'noInfo': true }
+      return { dayInfo, 'noInfo': true }
     }
   },
   data: () => ({
-    // date: null,
+    mount: false,
   }),
-  // created(){
-  //   this.date =`${this.$route.params.yyyymm}-${this.$route.params.dd}`;
-  // },
-  // beforeRouteUpdate(to, from, next){
-  //   this.date =`${this.$route.params.yyyymm}-${this.$route.params.dd}`;
-  //   next();
-  // },
+  mounted(){
+    this.mount = true
+  },
   computed: {
     moon(){
       return getMoonPhase(new Date(this.date) );
     },
-    date(){
+    date: {
+      get(){
         return `${this.$route.params.yyyymm}-${this.$route.params.dd}`;
+      },
+      set(value){
+        this.$router.push('/'+getYYYYMMDD(0, `${value}`,'-', '/'));
+      },
     },
     prevLink(){
       return '/'+getYYYYMMDD(-1, `${this.$route.params.yyyymm}-${this.$route.params.dd}`,'-', '/');
@@ -223,12 +224,6 @@ export default {
       return [];
     },
   },
-  methods: {
-    goToDate(value){
-      this.$router.push('/'+getYYYYMMDD(0, `${value }`,'-', '/'));
-    }
-  }
-  
 }
 </script>
 
