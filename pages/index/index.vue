@@ -180,7 +180,6 @@ export default {
     }
   },
   async asyncData({ $axios, $config, params }) {
-
     if (!params.yyyymm) {
       params.yyyymm = getYYYYMM();
     }

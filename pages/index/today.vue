@@ -168,21 +168,28 @@ export default {
       ]
     }
   },
-  async asyncData({ $axios, $config, params }) {
-    let dayInfo = {};
-    try {
-      let date =  new Date();
-      dayInfo = await $axios.$get(`/month/${getYYYYMM(0, date)}/${getYYYYMMDD(0, date )}.json`)
-      return { dayInfo, 'noInfo': false }
-    } catch (error) {
-      return { dayInfo, 'noInfo': true }
-    }
-  },
+  // async asyncData({ $axios, $config, params }) {
+  //   let dayInfo = {};
+  //   try {
+  //     let date =  new Date();
+  //     dayInfo = await $axios.$get(`/month/${getYYYYMM(0, date)}/${getYYYYMMDD(0, date )}.json`)
+  //     return { dayInfo, 'noInfo': false }
+  //   } catch (error) {
+  //     return { dayInfo, 'noInfo': true }
+  //   }
+  // },
+
+
+  // call fetch only on client-side
+  // fetchOnServer: false,
   data: () => ({
     mount: false,
+    dayInfo: {},
+    noInfo: false,
   }),
   mounted(){
-    this.mount = true
+    this.mount = true,
+    this.fetch()
   },
   computed: {
     moon(){
@@ -211,7 +218,20 @@ export default {
       }
       return [];
     },
-  },  
+  },
+  methods: {
+    async fetch() {
+      try {
+        let date = new Date();
+        this.dayInfo = await this.$axios.$get(`/month/${getYYYYMM(0, date)}/${getYYYYMMDD(0, date )}.json`)
+        console.log(this.dayInfo);
+        this.noInfo = false
+      } catch (error) {
+        this.dayInfo = {}
+        this.noInfo = true
+      }
+    },
+  }
 }
 </script>
 

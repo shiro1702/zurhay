@@ -45,7 +45,7 @@ export default {
     pageTitle(){
       if ( this.$route.name === 'index') {
         let options = {year: 'numeric', month: 'long'};
-        let d = new Date(`${getYYYYMM()}-1`).toLocaleString('ru', options)
+        let d = new Date(`${getYYYYMMDD()}`).toLocaleString('ru', options)
         return 'на месяц ' + d;
       }
       if ( this.$route.name === 'index-yyyymm') {
@@ -66,7 +66,7 @@ export default {
     pageDesc(){
       if ( this.$route.name === 'index') {
         let options = {year: 'numeric', month: 'long'};
-        let d = new Date(`${getYYYYMM()}-1`).toLocaleString('ru', options)
+        let d = new Date(`${getYYYYMMDD()}`).toLocaleString('ru', options)
         return 'Зурхай на месяц ' + d + ' лунный календарь благоприятных дней для стрижки и путешествий';
       }
       if ( this.$route.name === 'index-yyyymm') {
@@ -92,7 +92,7 @@ export default {
     title(){
       if ( this.$route.name === 'index') {
         let options = {year: 'numeric', month: 'long'};
-        let d = new Date(`${getYYYYMM()}-1`).toLocaleString('ru', options)
+        let d = new Date(`${getYYYYMMDD()}`).toLocaleString('ru', options)
         return 'на ' + d
       }
       if ( this.$route.name === 'index-yyyymm') {
