@@ -161,8 +161,15 @@ export default {
       }
     ],
   ],
-  // axios: {
-  //   proxy: true,
-  //   // See https://github.com/nuxt-community/axios-module#options
-  // },
+  axios: {
+    baseURL: '/',
+    // proxy: true,
+    // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: 'http://localhost:3000'
+    }
+  },
 }

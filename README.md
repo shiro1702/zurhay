@@ -13,6 +13,9 @@ npm run genDateJson
 // генерация js, если что-то поменялось в логике
 npm run build
 
+// дл создания доступа к json файлам страниц
+npm run dev
+
 //сгенерировать html
 npm run generate 
 
