@@ -13,7 +13,6 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 /* Plugins */
 
 import nuxt_plugin_plugin_4eb56250 from 'nuxt_plugin_plugin_4eb56250' // Source: ./vuetify/plugin.js (mode: 'all')
-import nuxt_plugin_yandexmetrikaplugin553b9a16_7b88d0e4 from 'nuxt_plugin_yandexmetrikaplugin553b9a16_7b88d0e4' // Source: ./yandex-metrika.plugin.553b9a16.js (mode: 'client')
 import nuxt_plugin_axios_30cff674 from 'nuxt_plugin_axios_30cff674' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_googleanalytics_0d009132 from 'nuxt_plugin_googleanalytics_0d009132' // Source: ./google-analytics.js (mode: 'client')
 import nuxt_plugin_TiptapVuetify_5e6e5270 from 'nuxt_plugin_TiptapVuetify_5e6e5270' // Source: ../plugins/TiptapVuetify (mode: 'all')
@@ -66,7 +65,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"htmlAttrs":{"lang":"ru"},"title":"Зурхай - буддийский лунный календар","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Зурхай - лунный календарь благоприятных дней для стрижки и путешествий"},{"name":"yandex-verification","content":"0993204c71aaf55b"},{"name":"google-site-verification","content":"CB6SgDkCNtB4-Ii1oZ_q_juNumcUbTatzCmFKoicG4U"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Fimg\u002Ffavicon\u002Ffavicon.ico"},{"rel":"apple-touch-icon","sizes":"180x180","href":"\u002Fimg\u002Ffavicon\u002Fapple-touch-icon.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"32x32","href":"\u002Fimg\u002Ffavicon\u002Ffavicon-32x32.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"16x16","href":"\u002Fimg\u002Ffavicon\u002Ffavicon-16x16.png"},{"rel":"manifest","type":"image\u002Fx-icon","href":"\u002Fimg\u002Ffavicon\u002Fsite.webmanifest"},{"href":"https:\u002F\u002Fmc.yandex.ru\u002Fmetrika\u002Ftag.js","rel":"preload","as":"script"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
+    head: {"htmlAttrs":{"lang":"ru"},"title":"Зурхай - буддийский лунный календар","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Зурхай - лунный календарь благоприятных дней для стрижки и путешествий"},{"name":"yandex-verification","content":"0993204c71aaf55b"},{"name":"google-site-verification","content":"CB6SgDkCNtB4-Ii1oZ_q_juNumcUbTatzCmFKoicG4U"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Fimg\u002Ffavicon\u002Ffavicon.ico"},{"rel":"apple-touch-icon","sizes":"180x180","href":"\u002Fimg\u002Ffavicon\u002Fapple-touch-icon.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"32x32","href":"\u002Fimg\u002Ffavicon\u002Ffavicon-32x32.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"16x16","href":"\u002Fimg\u002Ffavicon\u002Ffavicon-16x16.png"},{"rel":"manifest","type":"image\u002Fx-icon","href":"\u002Fimg\u002Ffavicon\u002Fsite.webmanifest"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
 
     router,
     nuxt: {
@@ -182,10 +181,6 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_plugin_4eb56250 === 'function') {
     await nuxt_plugin_plugin_4eb56250(app.context, inject)
-  }
-
-  if (process.client && typeof nuxt_plugin_yandexmetrikaplugin553b9a16_7b88d0e4 === 'function') {
-    await nuxt_plugin_yandexmetrikaplugin553b9a16_7b88d0e4(app.context, inject)
   }
 
   if (typeof nuxt_plugin_axios_30cff674 === 'function') {
