@@ -2,7 +2,8 @@
 
 // import colors from 'vuetify/lib/util/colors'
 
-import axios from 'axios'
+// import axios from 'axios'
+import { routesGen } from './apiGen/routesGen'
 
 // import WriteJsonPlugin from 'write-json-webpack-plugin';
 
@@ -37,33 +38,34 @@ export default {
         'README.md'
       ] // ignore changes applied on this files
     },
-    routes(callback) {
-      let months = ['2021-05', '2021-06'];
-      let routesFinal = [];
-      let counter = 0;
-      // console.log('months', months);
-      months.forEach(month => {
-        // console.log('month', month);
-        // console.log('url', 'http://localhost:3000/month/'+month+'.json');
-        axios.get('http://localhost:3000/month/'+month+'.json')
-          .then(res => {
-            counter++;
-            // console.log('res', res.data);
-            routesFinal.push('/' + month );
-            for (let date in res.data) {
-              let day = date.split('-')[date.split('-').length - 1];
-              routesFinal.push('/' + month + '/' + day);
-              routesFinal.push('/' + month + '/' + day + '/edit');
-            }
-            if (counter == months.length) {
-              console.log(routesFinal);
-              callback(null, routesFinal)
-            }
-          })
-          .catch(callback)
-      })
+    routes: routesGen,
+    // routes(callback) {
+    //   // let months = ['2021-05', '2021-06'];
+    //   // let routesFinal = [];
+    //   // let counter = 0;
+    //   // // console.log('months', months);
+    //   // months.forEach(month => {
+    //   //   // console.log('month', month);
+    //   //   // console.log('url', 'http://localhost:3000/month/'+month+'.json');
+    //   //   axios.get('http://localhost:3000/month/'+month+'.json')
+    //   //     .then(res => {
+    //   //       counter++;
+    //   //       // console.log('res', res.data);
+    //   //       routesFinal.push('/' + month );
+    //   //       for (let date in res.data) {
+    //   //         let day = date.split('-')[date.split('-').length - 1];
+    //   //         routesFinal.push('/' + month + '/' + day);
+    //   //         routesFinal.push('/' + month + '/' + day + '/edit');
+    //   //       }
+    //   //       if (counter == months.length) {
+    //   //         console.log(routesFinal);
+    //   //         callback(null, routesFinal)
+    //   //       }
+    //   //     })
+    //   //     .catch(callback)
+    //   // })
       
-    }
+    // }
   },
       /*
   ** Global CSS
@@ -159,4 +161,8 @@ export default {
       }
     ],
   ],
+  // axios: {
+  //   proxy: true,
+  //   // See https://github.com/nuxt-community/axios-module#options
+  // },
 }

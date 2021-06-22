@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/2021-05/31", {data:[{},{dayInfo:{},noInfo:true}],fetch:{},mutations:void 0});

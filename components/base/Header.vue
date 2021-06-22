@@ -77,13 +77,13 @@
 
             <v-list>
               <v-list-item
-                v-for="item in links"
-                :key="item.name"
+                v-for="link in links"
+                :key="link.name"
                 nuxt
-                :to="{name: item.name}"
+                :to="{name: link.name, params: link.params}"
               >
                 <v-list-item-title 
-                >{{ item.title }}</v-list-item-title>
+                >{{ link.title }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>

@@ -10,8 +10,8 @@ npm run genDateJson
 // сгенерировать json файлы месяцев
 npm run genDateJson
 
-// дл создания доступа к json файлам страниц
-npm run dev
+// генерация js, если что-то поменялось в логике
+npm run build
 
 //сгенерировать html
 npm run generate 
