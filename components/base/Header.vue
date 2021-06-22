@@ -5,8 +5,9 @@
   >
     <!-- flat -->
     <v-container class="pa-0 fill-height max-container ">
+      <NuxtLink 
+        to="/" class="text-decoration-none d-flex align-center">
       <v-btn
-        to="/"
         elevation="2"
         nuxt
         fab
@@ -33,19 +34,23 @@
           <circle cx="25" cy="100" r="7.5" stroke="#3A4CA5" stroke-width="5"/>
         </svg>
       </v-btn>
-
+      <span class="primary--text font-weight-black ml-2">Зурхай</span>
+        
+      </NuxtLink>
       <v-spacer></v-spacer>
-      <v-btn
-        v-for="link in links"
-        :key="link.name"
-        text
-        nuxt
-        :to="{name: link.name, params: link.params}"
-        class="mr-2 d-none d-sm-flex"
-        :class="{'v-btn--active': $route.name === link.name }"
-      >
-        {{ link.title }}
-      </v-btn>
+      <nav class="d-flex">
+        <v-btn
+          v-for="link in links"
+          :key="link.name"
+          text
+          nuxt
+          :to="{name: link.name, params: link.params}"
+          class="mr-2 d-none d-sm-flex"
+          :class="{'v-btn--active': $route.name === link.name }"
+        >
+          {{ link.title }}
+        </v-btn>
+      </nav>
 
 
       <!-- <v-responsive max-width="260">
