@@ -50,7 +50,7 @@ export default {
       }
       if ( this.$route.name === 'index-yyyymm') {
         let options = {year: 'numeric', month: 'long'};
-        let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
+        let d = new Date(`${this.$route.params.yyyymm}-1T00:00:00`).toLocaleString('ru', options)
         return 'на месяц ' + d;
       }
       if ( this.$route.name === 'index-today' ) {
@@ -58,7 +58,7 @@ export default {
       }
       if ( this.$route.name === 'index-yyyymm-dd' || this.$route.name === 'index-yyyymm-dd-edit' ) {
         let options = {year: 'numeric', month: 'long', day: 'numeric'};
-        let d = new Date(`${this.$route.params.yyyymm}-${this.$route.params.dd}`).toLocaleString('ru', options)
+        let d = new Date(`${this.$route.params.yyyymm}-${this.$route.params.dd}T00:00:00`).toLocaleString('ru', options)
         return 'на ' + d;
       }
       return ''
@@ -71,7 +71,7 @@ export default {
       }
       if ( this.$route.name === 'index-yyyymm') {
         let options = {year: 'numeric', month: 'long'};
-        let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
+        let d = new Date(`${this.$route.params.yyyymm}-1T00:00:00`).toLocaleString('ru', options)
         return 'Зурхай на месяц ' + d + ' лунный календарь благоприятных дней для стрижки и путешествий';
       }
       if ( this.$route.name === 'index-today' ) {
@@ -79,7 +79,7 @@ export default {
       }
       if ( this.$route.name === 'index-yyyymm-dd' || this.$route.name === 'index-yyyymm-dd-edit' ) {
         let d = '';
-        if (`${this.$route.params.yyyymm}-${this.$route.params.dd}` === getYYYYMMDD()) {
+        if (`${this.$route.params.yyyymm}-${this.$route.params.dd}T00:00:00` === getYYYYMMDD()) {
           d = 'сегодня'
         } else {
           let options = {year: 'numeric', month: 'long', day: 'numeric'};
@@ -97,7 +97,7 @@ export default {
       }
       if ( this.$route.name === 'index-yyyymm') {
         let options = {year: 'numeric', month: 'long'};
-        let d = new Date(`${this.$route.params.yyyymm}-1`).toLocaleString('ru', options)
+        let d = new Date(`${this.$route.params.yyyymm}-1T00:00:00`).toLocaleString('ru', options)
         return 'на ' + d
       }
       if ( this.$route.name === 'index-today' ) {
@@ -105,7 +105,7 @@ export default {
       }
       if ( this.$route.name === 'index-yyyymm-dd' || this.$route.name === 'index-yyyymm-dd-edit' ) {
         let options = {year: 'numeric', month: 'long', day: 'numeric'};
-        let d = new Date(`${this.$route.params.yyyymm}-${this.$route.params.dd}`).toLocaleString('ru', options)
+        let d = new Date(`${this.$route.params.yyyymm}-${this.$route.params.dd}T00:00:00`).toLocaleString('ru', options)
         return 'на ' + d
       }
       return ' - буддийский лунный календар'

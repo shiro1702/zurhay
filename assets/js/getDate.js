@@ -18,7 +18,10 @@ export function getYYYYMM(amountMM = 0, date = new Date(), separatorYYYYMM = '-'
 
 export function getYYYYMMDD(amountDD = 0, date = new Date(), separatorYYYYMM = '-', separatorMMDD = '-'){
 
-  let d = new Date(date);  
+  let d = new Date(date);
+  if (isNaN(d.getTime())) {
+    d = new Date(date+ 'T00:00:00');
+  }
   // In case its IOS, parse the fulldate parts and re-create the date object.
   if(Number.isNaN(d.getMonth())) {
     let arr = fullDate.split(/[- :]/);
