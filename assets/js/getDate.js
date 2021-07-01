@@ -5,7 +5,7 @@ export function getYYYYMM(amountMM = 0, date = new Date(), separatorYYYYMM = '-'
   }
   // In case its IOS, parse the fulldate parts and re-create the date object.
   if(Number.isNaN(d.getMonth())) {
-    let arr = fullDate.split(/[- :]/);
+    let arr = date.split(/[- :]/);
     d = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
   }
   if (amountMM) {
@@ -24,7 +24,7 @@ export function getYYYYMMDD(amountDD = 0, date = new Date(), separatorYYYYMM = '
   }
   // In case its IOS, parse the fulldate parts and re-create the date object.
   if(Number.isNaN(d.getMonth())) {
-    let arr = fullDate.split(/[- :]/);
+    let arr = date.split(/[- :]/);
     d = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
   }
   if (amountDD) {
