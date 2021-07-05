@@ -1,7 +1,5 @@
 # zurhay
 
-start json generte 
-
 this month
 npm run genDateJson
 

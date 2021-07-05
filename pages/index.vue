@@ -71,7 +71,7 @@ export default {
       }
       if ( this.$route.name === 'index-yyyymm') {
         let options = {year: 'numeric', month: 'long'};
-        let d = new Date(`${getYYYYMMDD(0, `${this.$route.params.yyyymm-1}`)}`).toLocaleString('ru', options)
+        let d = new Date(`${getYYYYMMDD(0, `${this.$route.params.yyyymm}-1`)}`).toLocaleString('ru', options)
         return 'Зурхай на месяц ' + d + ' лунный календарь благоприятных дней для стрижки и путешествий';
       }
       if ( this.$route.name === 'index-today' ) {
