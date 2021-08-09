@@ -6,6 +6,7 @@ export function getMoonPhase(date) {
     let month = date.getMonth()+1;
     let day = date.getDate();
     let hours = date.getTimezoneOffset()/60;
+    // let hours = 8;
     let percent = 0;
 
     let c = 0, e = 0, jd = 0, b = 0;
