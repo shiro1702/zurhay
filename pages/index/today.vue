@@ -97,7 +97,6 @@
             </v-icon>
           </v-btn>
         </div>
-        <template v-if="dayInfo && dayInfo.info" >
           <div 
               v-if="dayInfo.custom && dayInfo.custom.text"
               class="mb-3 mb-sm-4" >
@@ -111,35 +110,32 @@
             <span>{{dayInfo.custom.text}}</span>
           </div>
           <div 
-              v-if="dayInfo.travel && dayInfo.travel.text"
               class="mb-3 mb-sm-4" >
             <v-icon
               small
-              :color="dayInfo.travel.positive?'green':'red'"
+              :color="((dayInfo && dayInfo.travel)? dayInfo.travel.positive: moon.zurhay.travel.positive )?'green':'red'"
               class="mr-2"
             >
               mdi-airplane
             </v-icon>
             <span class="d-none">Путешествие - </span>
-            <span>{{dayInfo.travel.text}}</span>
+            <span>{{(dayInfo && dayInfo.travel && dayInfo.travel.text && dayInfo.travel.text) || moon.zurhay.travel.text}}</span>
           </div>
           <div 
-              v-if="dayInfo.haircut && dayInfo.haircut.text" 
               class="mb-3 mb-sm-4" >
             <v-icon
               small
-              :color="dayInfo.haircut.positive?'green':'red'"
+              :color="((dayInfo && dayInfo.haircut)? dayInfo.haircut.positive: moon.zurhay.haircut.positive )?'green':'red'"
               class="mr-2"
             >
               mdi-content-cut
             </v-icon>
             <span class="d-none">Стрижка волос - </span>
-            <span>{{dayInfo.haircut.text}}</span>
+            <span>{{(dayInfo && dayInfo.haircut && dayInfo.haircut.text && dayInfo.haircut.text) || moon.zurhay.haircut.text}}</span>
           </div>
-          <div v-if="dayInfo.info" v-html="dayInfo.info" >
+          <div v-if="dayInfo && dayInfo.info" v-html="dayInfo.info" >
           </div>
-        </template>
-        <div v-else 
+        <div v-if="!(dayInfo && dayInfo.info)" 
             class="mb-3 mb-sm-6" >
           пока нет информации
         </div>
