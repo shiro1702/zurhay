@@ -24,6 +24,15 @@ export default {
     // base: '/zurhay/'
     base: '/'
   },
+  sitemap: {
+    hostname: 'https://zurhay.ru/',
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
+    },
+    routes: routesGen,
+  },
   generate: {
     fallback: true,
     crawler: false,
@@ -101,7 +110,10 @@ export default {
     ]
   },
 
-  plugins: ['~/plugins/TiptapVuetify'],
+  plugins: [
+    '~/plugins/TiptapVuetify',
+    '~/plugins/gtag.js'
+  ],
   build: {
     transpile: ['vuetify/lib', "tiptap-vuetify"],
   },
@@ -148,7 +160,8 @@ export default {
   /*
    ** Modules - https://nuxtjs.org/docs/2.x/directory-structure/modules
    */
-  modules: ['@nuxtjs/axios', 
+  modules: ['@nuxtjs/axios',
+    '@nuxtjs/sitemap',
     [
       '@nuxtjs/yandex-metrika',
       {
