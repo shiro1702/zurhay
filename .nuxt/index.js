@@ -16,6 +16,7 @@ import nuxt_plugin_plugin_4eb56250 from 'nuxt_plugin_plugin_4eb56250' // Source:
 import nuxt_plugin_axios_30cff674 from 'nuxt_plugin_axios_30cff674' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_googleanalytics_0d009132 from 'nuxt_plugin_googleanalytics_0d009132' // Source: ./google-analytics.js (mode: 'client')
 import nuxt_plugin_TiptapVuetify_5e6e5270 from 'nuxt_plugin_TiptapVuetify_5e6e5270' // Source: ../plugins/TiptapVuetify (mode: 'all')
+import nuxt_plugin_gtag_0a2cb1e4 from 'nuxt_plugin_gtag_0a2cb1e4' // Source: ../plugins/gtag.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -193,6 +194,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_TiptapVuetify_5e6e5270 === 'function') {
     await nuxt_plugin_TiptapVuetify_5e6e5270(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_gtag_0a2cb1e4 === 'function') {
+    await nuxt_plugin_gtag_0a2cb1e4(app.context, inject)
   }
 
   // Lock enablePreview in context
